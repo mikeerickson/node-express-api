@@ -1,7 +1,7 @@
-// BASE SETUP
-// =============================================================================
+// load all the packages we will be using
 
-// call the packages we need
+var appName    = 'MLB Player Stats';
+
 var express    = require('express');
 var bodyParser = require('body-parser');
 var app        = express();
@@ -17,108 +17,102 @@ app.use(bodyParser.json());
 var port       = process.env.PORT || 3000; // set our port
 
 var mongoose   = require('mongoose');
-// mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o'); // connect to our database
-mongoose.connect('mongodb://localhost:27017/Bears'); // connect to our database
+mongoose.connect('mongodb://localhost:27017/Players'); // connect to our database
 
-// load Bear model
-var Bear       = require('./app/models/bear');
+// load Player model
+var Player     = require('./app/models/player');
 
-// ROUTES FOR OUR API
+// API ROUTES
 // =============================================================================
 
-// create our router
+// create router
 var router = express.Router();
 
 // middleware to use for all requests
 router.use(function(req, res, next) {
-	// do logging
-	console.log('Something is happening.');
+	console.log('API Connection Received.');
 	next();
 });
 
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
+// test route to make sure everything is working (accessed at GET http://localhost:3000/api)
 router.get('/', function(req, res) {
-	res.json({ message: 'hooray! welcome to our api!' });
+	res.json({ message: 'Welcome to '+ appName +' 2014' });
 });
 
-// on routes that end in /bears
+// on routes that end in /players
 // ----------------------------------------------------
-router.route('/bears')
+router.route('/players')
 
-	// create a bear (accessed at POST http://localhost:8080/bears)
+	// create a player (accessed at POST http://localhost:3000/players)
 	.post(function(req, res) {
 
-		var bear = new Bear();		// create a new instance of the Bear model
-		bear.name = req.body.name;  // set the bears name (comes from the request)
+		var player = new Player();		// create a new instance of the Player model
+		player.name = req.body.name;  // set the players name (comes from the request)
 
-		bear.save(function(err) {
+		player.save(function(err) {
 			if (err)
 				res.send(err);
 
-			res.json({ message: 'Bear created!' });
+			res.json({ message: 'Player created!' });
 		});
 
 
 	})
 
-	// get all the bears (accessed at GET http://localhost:8080/api/bears)
+	// get all the players (accessed at GET http://localhost:8080/api/players)
 	.get(function(req, res) {
-		Bear.find(function(err, bears) {
+		Player.find(function(err, players) {
 			if (err)
 				res.send(err);
-
-			res.json(bears);
+			res.json(players);
 		});
 	});
 
-// on routes that end in /bears/:bear_id
+// on routes that end in /players/:player_id
 // ----------------------------------------------------
-router.route('/bears/:bear_id')
+router.route('/players/:player_id')
 
-	// get the bear with that id
+	// get the player with that id
 	.get(function(req, res) {
-		Bear.findById(req.params.bear_id, function(err, bear) {
+		Player.findById(req.params.player_id, function(err, player) {
 			if (err)
 				res.send(err);
-			res.json(bear);
+			res.json(player);
 		});
 	})
 
-	// update the bear with this id
+	// update the player with this id
 	.put(function(req, res) {
-		Bear.findById(req.params.bear_id, function(err, bear) {
+		Player.findById(req.params.player_id, function(err, player) {
 
 			if (err)
 				res.send(err);
 
-			bear.name = req.body.name;
-			bear.save(function(err) {
+			player.name = req.body.name;
+			player.save(function(err) {
 				if (err)
 					res.send(err);
-
-				res.json({ message: 'Bear updated!' });
+				res.json({ message: 'Player updated!' });
 			});
 
 		});
 	})
 
-	// delete the bear with this id
+	// delete the player with this id
 	.delete(function(req, res) {
-		Bear.remove({
-			_id: req.params.bear_id
-		}, function(err, bear) {
+		Player.remove({
+			_id: req.params.player_id
+		}, function(err, player) {
 			if (err)
 				res.send(err);
 
-			res.json({ message: 'Successfully deleted' });
+			res.json({ message: 'Player Successfully Deleted' });
 		});
 	});
 
-
-// REGISTER OUR ROUTES -------------------------------
+// REGISTER OUR ROUTES
 app.use('/api', router);
 
 // START THE SERVER
-// =============================================================================
 app.listen(port);
-console.log('Magic happens on port ' + port);
+console.log('API Server running on port ' + port);

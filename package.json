@@ -3,12 +3,12 @@
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/scotch-io/node-token-authentication"
+    "url": "git://github.com/mikeerickson/node-express-api"
   },
   "scripts": {
     "start": "node server.js"
   },
-  "author": "Chris Sevilleja <scotch.io>",
+  "author": "Mike Erickson <codedungeon@gmail>",
   "license": "MIT",
   "dependencies": {
     "express": "~4.0.0",
