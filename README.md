@@ -12,12 +12,16 @@ Example application will allow you to work with a single endpoint `batters` whic
 ## Installation
 Complete the following tasks if getting started (you can skip step 3 if you want to have a clean database)
 
-1. Clone the repo: `git clone https://github.com/mikeerickson/node-express-api.git`
-2. Install dependencies: `npm install`
+1. Clone the repo:
+	- <pre>https://github.com/mikeerickson/node-express-api.git</pre>
+2. Install application dependencies
+	- <pre>npm install</pre>
 3. Import `batters.json` sample data
 	- <pre>$ mongoimport -d players -c batters --file batters.json</pre>
-4. Start MongoDB server daemon: `mongod`
-5. Start the server: `node server.js`
+4. Start MongoDB server daemon
+	- <pre>$ mongod</pre>
+5. Start the server
+	- <pre>$ node server.js</pre>
 
 ## Mongo Shell
 If you want to work with the `players` database using Mongo Shell, use separate tab
