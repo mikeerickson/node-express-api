@@ -31,16 +31,3 @@ var BatterSchema   = new Schema({
 });
 
 module.exports = mongoose.model('Batter', BatterSchema);
-
-// SELECT * FROM `Batting` INNER JOIN `Master` ON Batting.playerID = Master.playerID WHERE batting.`yearID` = 2014 ORDER BY `Batting`.playerID;
-
-// SELECT * FROM `Batting` INNER JOIN `Master` ON `Batting`.playerID = `Master`.playerID WHERE `Batting`.yearID = 2014 ORDER BY `Batting`.playerID;
-
-// SELECT `Batting`.playerID, `Batting`.yearID, `Batting`.G, `Fielding`.POS FROM `Batting` INNER JOIN `Fielding` ON Batting.playerID = Fielding.playerID WHERE `Batting`.yearID = 2014 ORDER BY `Batting`.playerID;
-
-// SELECT *
-// 	FROM `Batting`
-// 	LEFT JOIN `Master` ON Batting.playerID = Master.playerID
-// 	LEFT JOIN `Teams` ON Batting.teamID = Teams.teamID
-// 	WHERE batting.`yearID` = 2014
-// 	ORDER BY `Batting`.playerID;
