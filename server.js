@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var app        = express();
 var morgan     = require('morgan');
 var chalk      = require('chalk');
+var _          = require('lodash');
 
 var appName    = config.defaults.appName;
 // configure app
@@ -32,13 +33,13 @@ var router = express.Router();
 
 // middleware to use for all requests
 router.use(function(req, res, next) {
-	console.log('Unhandled API Connection Received...');
+	// console.log('Unhandled API Connection Received...');
 	next();
 });
 
 // test route to make sure everything is working (accessed at GET http://localhost:3000/api/v1)
 router.get('/', function(req, res) {
-	res.json({ message: 'Welcome to '+ appName +' 2014 API' });
+	res.json({ status: 'OK', message: 'Welcome to '+ appName +' 2014 API' });
 });
 
 // on routes that end in /batters
@@ -51,13 +52,14 @@ router.route('/batters')
 		batter.set(res.body);
 		batter.save(function(err) {
 			if (err) res.send(err);
-			res.json({ message: 'Batter created!' });
+			res.json({ status: 'OK', message: 'Batter created' });
 		});
 	})
 
 	// get all the batters (accessed at GET http://localhost:8080/api/v1/batters)
 	.get(function(req, res) {
-		Batter.find(function(err, batters) {
+		var q = req.query;
+		Batter.find(q,function(err, batters) {
 			if (err) res.send(err);
 			res.json(batters);
 		});
@@ -82,7 +84,7 @@ router.route('/batters/:batter_id')
 			batting.set(res.body);
 			batter.save(function(err) {
 				if (err) res.send(err);
-				res.json({ message: batter.first_name + ' updated!' });
+				res.json({ status: 'OK', message: batter.first_name + ' Updated Successfully' });
 			});
 		});
 	})
@@ -93,7 +95,7 @@ router.route('/batters/:batter_id')
 			_id: req.params.batter_id
 		}, function(err, batter) {
 			if (err) res.send(err);
-			res.json({ message: 'Batter Successfully Deleted' });
+			res.json({ status: 'OK', message: 'Batter Successfully Deleted' });
 		});
 	});
 
