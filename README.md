@@ -1,6 +1,7 @@
 # Building a RESTful API with Node, MongoDB and Express
 
-Using the new Express 4.0 Router to build an API
+Sample Node Express API application, using Express 4.0 Router and simple API router.
+Example application will allow you to work with a single endpoint `batters` which contains all batting data for MLB 2014!
 
 ## Requirements
 
