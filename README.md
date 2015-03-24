@@ -25,3 +25,18 @@ If you want to work with the `players` database using Mongo Shell, use separate 
 
 ## Testing the API
 Test your API using [Postman](https://chrome.google.com/webstore/detail/postman-rest-client-packa/fhbjgbiflinjbdggehcddcbncdddomop)
+
+## Contributing
+Contributions are welcome, you know the drill :-)
+
+## Credits
+
+node-express-api written by Mike Erickson
+
+E-Mail: [codedungeon@gmail.com](mailto:codedungeon@gmail.com)
+
+Twitter: [@codedungeon](http://twitter.com/codedungeon)
+
+Website: [codedungeon.org](http://codedungeon.org)
+
+
