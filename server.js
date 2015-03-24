@@ -22,8 +22,13 @@ var mongoose   = require('mongoose');
 console.log(config.dev.connection);
 mongoose.connect(config.dev.connection); // connect to our database
 
-// load Batter model
+// LOAD MODELS
+// Only using batter model, but you could use other models as you need here
+// Note: You will need to expand API ROUTES accordingly
+
 var Batter     = require('./app/models/batter');
+// var Pitcher    = require('./app/models/pitcher');
+
 
 // API ROUTES
 // =============================================================================
@@ -33,7 +38,7 @@ var router = express.Router();
 
 // middleware to use for all requests
 router.use(function(req, res, next) {
-	// console.log('Unhandled API Connection Received...');
+	// here you can do any type of user validation etc before proceeding to API
 	next();
 });
 
@@ -42,8 +47,10 @@ router.get('/', function(req, res) {
 	res.json({ status: 'OK', message: 'Welcome to '+ appName +' 2014 API' });
 });
 
-// on routes that end in /batters
-// ----------------------------------------------------
+// API ROUTES
+// =============================================================================
+
+// Configure all `batters` routes (GET, PUT, PATCH, POST, DELETE)
 router.route('/batters')
 
 	// create a batter (accessed at POST http://localhost:3000/batters)
@@ -56,7 +63,7 @@ router.route('/batters')
 		});
 	})
 
-	// get all the batters (accessed at GET http://localhost:8080/api/v1/batters)
+	// get all the batters (accessed at GET http://localhost:3000/api/v1/batters)
 	.get(function(req, res) {
 		var q = req.query;
 		Batter.find(q,function(err, batters) {
@@ -99,9 +106,13 @@ router.route('/batters/:batter_id')
 		});
 	});
 
-// REGISTER OUR ROUTES
+
+// REGISTER ROUTES to `api/v1`
+// =============================================================================
 app.use('/api/v1', router);
 
+
 // START THE SERVER
+// =============================================================================
 app.listen(port);
 console.log(chalk.blue(appName +' API Server running on port ' + port));
