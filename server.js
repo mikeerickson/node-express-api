@@ -1,12 +1,13 @@
 // load all the packages we will be using
 
-var appName    = 'MLB Player Stats';
-
+var config     = require('./config');			// load config object first so we can use immediately
 var express    = require('express');
 var bodyParser = require('body-parser');
 var app        = express();
 var morgan     = require('morgan');
+var chalk      = require('chalk');
 
+var appName    = config.defaults.appName;
 // configure app
 app.use(morgan('dev')); // log requests to the console
 
@@ -14,13 +15,14 @@ app.use(morgan('dev')); // log requests to the console
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port       = process.env.PORT || 3000; // set our port
+var port       = process.env.PORT || config.dev.port || 3000; // set our port
 
 var mongoose   = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/Players'); // connect to our database
+console.log(config.dev.connection);
+mongoose.connect(config.dev.connection); // connect to our database
 
-// load Player model
-var Player     = require('./app/models/player');
+// load Batter model
+var Batter     = require('./app/models/batter');
 
 // API ROUTES
 // =============================================================================
@@ -30,89 +32,74 @@ var router = express.Router();
 
 // middleware to use for all requests
 router.use(function(req, res, next) {
-	console.log('API Connection Received.');
+	console.log('Unhandled API Connection Received...');
 	next();
 });
 
-// test route to make sure everything is working (accessed at GET http://localhost:3000/api)
+// test route to make sure everything is working (accessed at GET http://localhost:3000/api/v1)
 router.get('/', function(req, res) {
-	res.json({ message: 'Welcome to '+ appName +' 2014' });
+	res.json({ message: 'Welcome to '+ appName +' 2014 API' });
 });
 
-// on routes that end in /players
+// on routes that end in /batters
 // ----------------------------------------------------
-router.route('/players')
+router.route('/batters')
 
-	// create a player (accessed at POST http://localhost:3000/players)
+	// create a batter (accessed at POST http://localhost:3000/batters)
 	.post(function(req, res) {
-
-		var player = new Player();		// create a new instance of the Player model
-		player.name = req.body.name;  // set the players name (comes from the request)
-
-		player.save(function(err) {
-			if (err)
-				res.send(err);
-
-			res.json({ message: 'Player created!' });
+		var batter = new Batter();		// create a new instance of the Batter model
+		batter.set(res.body);
+		batter.save(function(err) {
+			if (err) res.send(err);
+			res.json({ message: 'Batter created!' });
 		});
-
-
 	})
 
-	// get all the players (accessed at GET http://localhost:8080/api/players)
+	// get all the batters (accessed at GET http://localhost:8080/api/v1/batters)
 	.get(function(req, res) {
-		Player.find(function(err, players) {
-			if (err)
-				res.send(err);
-			res.json(players);
+		Batter.find(function(err, batters) {
+			if (err) res.send(err);
+			res.json(batters);
 		});
 	});
 
-// on routes that end in /players/:player_id
+// on routes that end in /batters/:batter_id
 // ----------------------------------------------------
-router.route('/players/:player_id')
+router.route('/batters/:batter_id')
 
-	// get the player with that id
+	// get the better with that id
 	.get(function(req, res) {
-		Player.findById(req.params.player_id, function(err, player) {
-			if (err)
-				res.send(err);
-			res.json(player);
+		Batter.findById(req.params.batter_id, function(err, batter) {
+			if (err) res.send(err);
+			res.json(batter);
 		});
 	})
 
-	// update the player with this id
+	// update the batter with this id
 	.put(function(req, res) {
-		Player.findById(req.params.player_id, function(err, player) {
-
-			if (err)
-				res.send(err);
-
-			player.name = req.body.name;
-			player.save(function(err) {
-				if (err)
-					res.send(err);
-				res.json({ message: 'Player updated!' });
+		Batter.findById(req.params.batter_id, function(err, batter) {
+			if (err) res.send(err);
+			batting.set(res.body);
+			batter.save(function(err) {
+				if (err) res.send(err);
+				res.json({ message: batter.first_name + ' updated!' });
 			});
-
 		});
 	})
 
-	// delete the player with this id
+	// delete the batter with this id
 	.delete(function(req, res) {
-		Player.remove({
-			_id: req.params.player_id
-		}, function(err, player) {
-			if (err)
-				res.send(err);
-
-			res.json({ message: 'Player Successfully Deleted' });
+		Batter.remove({
+			_id: req.params.batter_id
+		}, function(err, batter) {
+			if (err) res.send(err);
+			res.json({ message: 'Batter Successfully Deleted' });
 		});
 	});
 
 // REGISTER OUR ROUTES
-app.use('/api', router);
+app.use('/api/v1', router);
 
 // START THE SERVER
 app.listen(port);
-console.log('API Server running on port ' + port);
+console.log(chalk.blue(appName +' API Server running on port ' + port));

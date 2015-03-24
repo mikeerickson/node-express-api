@@ -4,7 +4,9 @@ Using the new Express 4.0 Router to build an API
 
 ## Requirements
 
-- Node MongDB, and npm
+- Node MongDB, npm, and nodemon*
+
+* If you dont use Nodemon (which you should), you just need to edit the package.json start script to call `node server.js`
 
 ## Installation
 
