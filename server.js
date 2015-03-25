@@ -58,7 +58,6 @@ router.route('/batters')
 	// create a batter (accessed at POST http://localhost:3000/batters)
 	.post(function(req, res) {
 		var batter = new Batter();		// create a new instance of the Batter model
-		console.log(req.body);
 		batter.set(req.body);
 		batter.save(function(err) {
 			if (err) res.send(err);
@@ -94,7 +93,28 @@ router.route('/batters/:batter_id')
 			batter.set(req.body);
 			batter.save(function(err) {
 				if (err) res.send(err);
-				res.json({ status: 'OK', message: batter.first_name + ' Updated Successfully' });
+				res.json(
+					{
+					   status: 'OK',
+					   data: req.body,
+					   message: batter.first_name +' '+ batter.last_name + ' Updated Successfully'
+					});
+			});
+		});
+	})
+	// update the batter with this id
+	.patch(function(req, res) {
+		Batter.findById(req.params.batter_id, function(err, batter) {
+			if (err) res.send(err);
+			batter.set(req.body);
+			batter.save(function(err) {
+				if (err) res.send(err);
+				res.json(
+					{
+					   status: 'OK',
+					   data: req.body,
+					   message: batter.first_name +' '+ batter.last_name + ' Updated Successfully'
+					});
 			});
 		});
 	})
