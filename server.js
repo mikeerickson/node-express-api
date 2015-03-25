@@ -1,6 +1,7 @@
 // load all the packages we will be using
 
 var config     = require('./config');			// load config object first so we can use immediately
+var connection = require('./connection');
 var express    = require('express');
 var bodyParser = require('body-parser');
 var app        = express();
@@ -16,11 +17,12 @@ app.use(morgan('dev')); // log requests to the console
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port       = process.env.PORT || config.dev.port || 3000; // set our port
+var port       = connection.http.port; // set our port
 
 var mongoose   = require('mongoose');
-console.log(config.dev.connection);
-mongoose.connect(config.dev.connection); // connect to our database
+
+mongoose.connect(connection.database.url); // connect to our database
+console.log(chalk.green('Connected to ' + connection.database.url));
 
 // LOAD MODELS
 // Only using batter model, but you could use other models as you need here
@@ -38,7 +40,7 @@ var router = express.Router();
 
 // middleware to use for all requests
 router.use(function(req, res, next) {
-	// here you can do any type of user validation etc before proceeding to API
+	// perform rate limit and/or authentication here
 	next();
 });
 
@@ -56,7 +58,8 @@ router.route('/batters')
 	// create a batter (accessed at POST http://localhost:3000/batters)
 	.post(function(req, res) {
 		var batter = new Batter();		// create a new instance of the Batter model
-		batter.set(res.body);
+		console.log(req.body);
+		batter.set(req.body);
 		batter.save(function(err) {
 			if (err) res.send(err);
 			res.json({ status: 'OK', message: 'Batter created' });
@@ -88,7 +91,7 @@ router.route('/batters/:batter_id')
 	.put(function(req, res) {
 		Batter.findById(req.params.batter_id, function(err, batter) {
 			if (err) res.send(err);
-			batting.set(res.body);
+			batter.set(req.body);
 			batter.save(function(err) {
 				if (err) res.send(err);
 				res.json({ status: 'OK', message: batter.first_name + ' Updated Successfully' });

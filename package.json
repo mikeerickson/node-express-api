@@ -6,7 +6,7 @@
     "url": "git://github.com/mikeerickson/node-express-api"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "NODE_ENV=dev nodemon server.js"
   },
   "author": "Mike Erickson <codedungeon@gmail>",
   "license": "MIT",
