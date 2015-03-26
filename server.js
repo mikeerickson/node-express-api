@@ -93,12 +93,7 @@ router.route('/batters/:batter_id')
 			batter.set(req.body);
 			batter.save(function(err) {
 				if (err) res.send(err);
-				res.json(
-					{
-					   status: 'OK',
-					   data: req.body,
-					   message: batter.first_name +' '+ batter.last_name + ' Updated Successfully'
-					});
+				res.json({status: 'OK', message: batter.first_name +' '+ batter.last_name + ' Updated Successfully'});
 			});
 		});
 	})
@@ -109,12 +104,7 @@ router.route('/batters/:batter_id')
 			batter.set(req.body);
 			batter.save(function(err) {
 				if (err) res.send(err);
-				res.json(
-					{
-					   status: 'OK',
-					   data: req.body,
-					   message: batter.first_name +' '+ batter.last_name + ' Updated Successfully'
-					});
+				res.json({status: 'OK', message: batter.first_name +' '+ batter.last_name + ' Updated Successfully'});
 			});
 		});
 	})
