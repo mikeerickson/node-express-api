@@ -1,9 +1,14 @@
+// APPLICATION CONFIGURATION
+// global, application wide configuration (./tasks/connfig is for tasks configuration only)
+
 "use strict";
 
 module.exports = {
 
 	defaults: {
-		appName: 'MLB Player Stats'
+		appName: 'MLB Player Stats',
+		connection:  'mongodb://localhost:27017/players',
+		port: 3000
 	},
 
 	dev: {

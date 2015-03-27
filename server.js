@@ -1,4 +1,10 @@
-// load all the packages we will be using
+// SERVER
+// =============================================================================
+// main entrypoint into API
+
+// LOAD SERVER MODULES
+// =============================================================================
+// load all modules used in application
 
 var config     = require('./config');			// load config object first so we can use immediately
 var connection = require('./connection');
@@ -10,21 +16,28 @@ var chalk      = require('chalk');
 var _          = require('lodash');
 
 var appName    = config.defaults.appName;
-// configure app
+
+
+// SETUP APPLICATION
+// =============================================================================
+
 app.use(morgan('dev')); // log requests to the console
 
 // configure body parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port       = connection.http.port; // set our port
 
+// SETUP MONGOOSE (ODM)
+// =============================================================================
 var mongoose   = require('mongoose');
 
 mongoose.connect(connection.database.url); // connect to our database
 console.log(chalk.green('Connected to ' + connection.database.url));
 
+
 // LOAD MODELS
+// =============================================================================
 // Only using batter model, but you could use other models as you need here
 // Note: You will need to expand API ROUTES accordingly
 
@@ -32,24 +45,26 @@ var Batter     = require('./app/models/batter');
 // var Pitcher    = require('./app/models/pitcher');
 
 
-// API ROUTES
+// CONFIGURE APP ROUTES
 // =============================================================================
 
-// create router
+// create router object
 var router = express.Router();
 
-// middleware to use for all requests
+// attach global middleware to use for all requests
 router.use(function(req, res, next) {
-	// perform rate limit and/or authentication here
+	// Examples (will be added in future versions of this code)
+	// perform rate limit
+	// perform authentication
+	// perform logging
+
+	// make sure to call next() or everything will come to a screeching
+	// halt and application will be non responsive
 	next();
 });
 
-// test route to make sure everything is working (accessed at GET http://localhost:3000/api/v1)
-router.get('/', function(req, res) {
-	res.json({ status: 'OK', message: 'Welcome to '+ appName +' 2014 API' });
-});
 
-// API ROUTES
+// CONFIGURE API ROUTES
 // =============================================================================
 
 // Configure all `batters` routes (GET, PUT, PATCH, POST, DELETE)
@@ -122,10 +137,22 @@ router.route('/batters/:batter_id')
 
 // REGISTER ROUTES to `api/v1`
 // =============================================================================
+// important that this is called at end of setup code as it depends on the router
+// object configured above.   This will set the default API route to
+// http::localhost:<port>/api/v1
+
+
+// create default route to make sure everything is working (accessed at GET http://localhost:3000/api/v1)
+router.get('/', function(req, res) {
+	res.json({ status: 'OK', message: 'Welcome to '+ appName +' 2014 API' });
+});
+
+// and finally attach router to API prefix
 app.use('/api/v1', router);
 
 
 // START THE SERVER
 // =============================================================================
+var port = connection.http.port; // set our port
 app.listen(port);
 console.log(chalk.blue(appName +' API Server running on port ' + port));
