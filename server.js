@@ -6,6 +6,8 @@
 // =============================================================================
 // load all modules used in application
 
+'use strict';
+
 var config     = require('./config');			// load config object first so we can use immediately
 var connection = require('./connection');
 var express    = require('express');
@@ -13,7 +15,6 @@ var bodyParser = require('body-parser');
 var app        = express();
 var morgan     = require('morgan');
 var chalk      = require('chalk');
-var _          = require('lodash');
 
 var appName    = config.defaults.appName;
 
@@ -21,7 +22,8 @@ var appName    = config.defaults.appName;
 // SETUP APPLICATION
 // =============================================================================
 
-app.use(morgan('dev')); // log requests to the console
+// log any request URI to the console, only when in `dev` mode (default: dev)
+app.use(morgan('dev'));
 
 // configure body parser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -67,7 +69,8 @@ router.use(function(req, res, next) {
 // CONFIGURE API ROUTES
 // =============================================================================
 
-// Configure all `batters` routes (GET, PUT, PATCH, POST, DELETE)
+// Configure all `batters`
+// includes routes (GET, POST)
 router.route('/batters')
 
 	// create a batter (accessed at POST http://localhost:3000/batters)
@@ -75,7 +78,8 @@ router.route('/batters')
 		var batter = new Batter();		// create a new instance of the Batter model
 		batter.set(req.body);
 		batter.save(function(err) {
-			if (err) res.send(err);
+			if (err) {res.send(err); }
+
 			res.json({ status: 'OK', message: 'Batter created' });
 		});
 	})
@@ -84,19 +88,22 @@ router.route('/batters')
 	.get(function(req, res) {
 		var q = req.query;
 		Batter.find(q,function(err, batters) {
-			if (err) res.send(err);
+			if (err) {res.send(err); }
+
 			res.json(batters);
 		});
 	});
 
 // on routes that end in /batters/:batter_id
+// includes GET, PUT, PATCH, DELETE
 // ----------------------------------------------------
 router.route('/batters/:batter_id')
 
 	// get the better with that id
 	.get(function(req, res) {
 		Batter.findById(req.params.batter_id, function(err, batter) {
-			if (err) res.send(err);
+			if (err) {res.send(err); }
+
 			res.json(batter);
 		});
 	})
@@ -104,21 +111,26 @@ router.route('/batters/:batter_id')
 	// update the batter with this id
 	.put(function(req, res) {
 		Batter.findById(req.params.batter_id, function(err, batter) {
-			if (err) res.send(err);
+			if (err) {res.send(err); }
+
 			batter.set(req.body);
 			batter.save(function(err) {
-				if (err) res.send(err);
+				if (err) {res.send(err); }
+
 				res.json({status: 'OK', message: batter.first_name +' '+ batter.last_name + ' Updated Successfully'});
 			});
 		});
 	})
+
 	// update the batter with this id
 	.patch(function(req, res) {
 		Batter.findById(req.params.batter_id, function(err, batter) {
-			if (err) res.send(err);
+			if (err) {res.send(err); }
+
 			batter.set(req.body);
 			batter.save(function(err) {
-				if (err) res.send(err);
+				if (err) {res.send(err); }
+
 				res.json({status: 'OK', message: batter.first_name +' '+ batter.last_name + ' Updated Successfully'});
 			});
 		});
@@ -128,8 +140,9 @@ router.route('/batters/:batter_id')
 	.delete(function(req, res) {
 		Batter.remove({
 			_id: req.params.batter_id
-		}, function(err, batter) {
-			if (err) res.send(err);
+		}, function(err) {
+			if (err) { res.send(err); }
+
 			res.json({ status: 'OK', message: 'Batter Successfully Deleted' });
 		});
 	});
@@ -153,6 +166,6 @@ app.use('/api/v1', router);
 
 // START THE SERVER
 // =============================================================================
-var port = connection.http.port; // set our port
+var port = connection.http.port; // set our port from connection
 app.listen(port);
 console.log(chalk.blue(appName +' API Server running on port ' + port));

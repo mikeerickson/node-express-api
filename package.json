@@ -17,6 +17,7 @@
     "express": "~4.0.0",
     "gulp": "^3.8.11",
     "gulp-jshint": "^1.9.4",
+    "gulp-logger": "0.0.2",
     "gulp-nodemon": "^2.0.2",
     "jshint-stylish": "^1.0.1",
     "lodash": "^3.5.0",
