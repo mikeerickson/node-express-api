@@ -12,13 +12,11 @@ var config     = require('./config'); // load config object first so we can use 
 var connection = require('./connection');
 var express    = require('express');
 var bodyParser = require('body-parser');
-var app        = express();
 var morgan     = require('morgan');
 var chalk      = require('chalk');
+var app        = express();
 
 var appName    = config.defaults.appName;
-
-
 // SETUP APPLICATION
 // =============================================================================
 
@@ -40,24 +38,47 @@ console.log(chalk.green('Connected to ' + connection.database.url));
 
 // LOAD MODELS
 // =============================================================================
-// Only using batter model, but you could use other models as you need here
+// Only using batter and pitcher models, but you could use other models as needed
 // Note: You will need to expand API ROUTES accordingly
 
 // TODO: Refactor this so you can load all models including 'dir'
 var Batter     = require('./app/models/batter');
 var Pitcher    = require('./app/models/pitcher');
+// var Manager    = require('./app/models/managers');
+
+
+// CONFIGURE ROUTE MIDDLEWARE
+// =============================================================================
+
+var router = express.Router();
+
+// attach global middleware to use for all requests
+router.use(function(req, res, next) {
+	// Examples (will be added in future versions of this code)
+	// - perform rate limit
+	// - perform authentication
+	// - perform logging
+	console.log('middleware fired');
+
+	// make sure to call next() or everything will come to a screeching
+	// halt and application will be non responsive
+	next();
+});
+
+app.use('/', router);
+
+// CONFIGURE NON-API ROUTES
+// =============================================================================
 
 
 // CONFIGURE API ROUTES
 // =============================================================================
 
-// load each route into separate route file
-var batters = require('./app/routes/batters');
-var home    = require('./app/routes/home');
+// load all the routes
+var routes = require('./app/routes');
 
 // and finally attach router to API prefix
-app.use('/api/v1', home);
-app.use('/api/v1/batters', batters);
+app.use('/api/v1', routes);
 
 
 // START THE SERVER
