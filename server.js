@@ -59,6 +59,7 @@ router.use(function(req, res, next) {
 	// - perform authentication
 	// - perform logging
 	console.log('middleware fired');
+	console.log(req);
 
 	// make sure to call next() or everything will come to a screeching
 	// halt and application will be non responsive
