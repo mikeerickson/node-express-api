@@ -18,10 +18,11 @@ Complete the following tasks if getting started (you can skip step 3 if you want
 	- <pre>npm install</pre>
 3. Import `batters.json` sample data
 	- <pre>$ mongoimport -d players -c batters --file batters.json</pre>
+	- <pre>$ mongoimport -d players -c pitchers --file pitchers.json</pre>
 4. Start MongoDB server daemon
 	- <pre>$ mongod</pre>
 5. Start the server
-	- <pre>$ node server.js</pre>
+	- <pre>$ npm start</pre>*
 
 ## Mongo Shell
 If you want to work with the `players` database using Mongo Shell, use separate tab
@@ -30,6 +31,16 @@ If you want to work with the `players` database using Mongo Shell, use separate 
 
 ## Testing the API
 Test your API using [Postman](https://chrome.google.com/webstore/detail/postman-rest-client-packa/fhbjgbiflinjbdggehcddcbncdddomop)
+
+## Change History
+
+20140331 - 0.2.0:
+- Added `players` endpoint
+- Refactored code to place routes in separate `routes` directory
+- Added `apikey` authentication
+
+20140326 - 0.1.0:
+- Initial Release (basic API)
 
 ## Contributing
 Contributions are welcome, you know the drill :-)
