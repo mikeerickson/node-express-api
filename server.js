@@ -15,6 +15,7 @@ var bodyParser = require('body-parser');
 var morgan     = require('morgan');
 var chalk      = require('chalk');
 var app        = express();
+var User       = require('./app/models/user');
 
 var appName    = config.defaults.appName;
 // SETUP APPLICATION
@@ -58,8 +59,16 @@ router.use(function(req, res, next) {
 	// - perform rate limit
 	// - perform authentication
 	// - perform logging
-	console.log('middleware fired');
-	console.log(req);
+
+	var apikey = req.headers.apikey || req.query.apikey || req.body.apikey;
+
+	User.findByApiKey(apikey, function(err, user) {
+		if (err) {res.send(err); }
+
+		if (user.length === 0) {
+			res.status(401).send({'status': 'fail', 'ApiKey': apikey, 'message': 'Unauthorized -- Invalid ApiKey'});
+		}
+	});
 
 	// make sure to call next() or everything will come to a screeching
 	// halt and application will be non responsive

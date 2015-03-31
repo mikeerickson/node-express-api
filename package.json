@@ -12,6 +12,7 @@
   "author": "Mike Erickson <codedungeon@gmail>",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^0.8.2",
     "body-parser": "~1.0.1",
     "chalk": "^1.0.0",
     "express": "~4.0.0",

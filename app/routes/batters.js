@@ -22,8 +22,7 @@ router.route('/')
 
 	// get all the batters (accessed at GET http://localhost:3000/api/v1/batters)
 	.get(function(req, res) {
-		var q = req.query;
-		Batter.find(q,function(err, batters) {
+		Batter.find(req.query,function(err, batters) {
 			if (err) {res.send(err); }
 
 			res.json(batters);
