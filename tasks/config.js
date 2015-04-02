@@ -7,6 +7,10 @@ module.exports = {
 
 	lint: {
 		src:  ['./server.js','app/**/*.js']
+	},
+
+	jasmine: {
+		src: ['./spec/**/*Spec.js', './server.js', 'app/**/*.js']
 	}
 
 };

@@ -13,7 +13,9 @@ module.exports = {
 
 	dev: {
 		connection:  'mongodb://localhost:27017/players',
-		port: 3000
+		port:        3000,
+		apikey:      'gunner',
+		checkApiKey: true
 	},
 
 	production: {

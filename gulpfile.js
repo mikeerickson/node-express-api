@@ -12,4 +12,9 @@ requireDir('./tasks', { recurse: true });
 // script edits and lint them
 gulp.task('watch', ['lint'], function(){
 	gulp.watch(config.lint.src, ['lint']);
+	gulp.watch(config.jasmine.src, ['test:js']);
+});
+
+gulp.task('tdd', ['test:js'], function(){
+	gulp.watch(config.jasmine.src, ['test:js']);
 });

@@ -7,7 +7,8 @@
     "url": "git://github.com/mikeerickson/node-express-api"
   },
   "scripts": {
-    "start": "NODE_ENV=dev nodemon server.js"
+    "start": "NODE_ENV=dev nodemon server.js",
+    "test": "jasmine-node spec"
   },
   "author": "Mike Erickson <codedungeon@gmail>",
   "license": "MIT",
@@ -24,6 +25,11 @@
     "lodash": "^3.5.0",
     "mongoose": "~3.6.13",
     "morgan": "~1.0.0",
-    "require-dir": "^0.3.0"
+    "require-dir": "^0.3.0",
+    "superagent": "^1.1.0",
+    "unirest": "^0.4.0"
+  },
+  "devDependencies": {
+    "gulp-jasmine": "^2.0.1"
   }
 }

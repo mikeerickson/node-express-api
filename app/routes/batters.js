@@ -12,10 +12,12 @@ router.route('/')
 	// create a batter (accessed at POST http://localhost:3000/batters)
 	.post(function(req, res) {
 		var batter = new Batter();		// create a new instance of the Batter model
+		console.log(req.body);
 		batter.set(req.body);
 		batter.save(function(err) {
 			if (err) {res.send(err); }
 
+			console.log('in post');
 			res.json({ status: 'OK', message: 'Batter created' });
 		});
 	})

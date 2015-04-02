@@ -42,11 +42,7 @@ console.log(chalk.green('Connected to ' + connection.database.url));
 // Only using batter and pitcher models, but you could use other models as needed
 // Note: You will need to expand API ROUTES accordingly
 
-// TODO: Refactor this so you can load all models including 'dir'
-var Batter     = require('./app/models/batter');
-var Pitcher    = require('./app/models/pitcher');
-// var Manager    = require('./app/models/managers');
-
+var models = require('./app/models');
 
 // CONFIGURE ROUTE MIDDLEWARE
 // =============================================================================
@@ -60,19 +56,28 @@ router.use(function(req, res, next) {
 	// - perform authentication
 	// - perform logging
 
-	var apikey = req.headers.apikey || req.query.apikey || req.body.apikey;
-
-	User.findByApiKey(apikey, function(err, user) {
-		if (err) {res.send(err); }
-
-		if (user.length === 0) {
-			res.status(401).send({'status': 'fail', 'ApiKey': apikey, 'message': 'Unauthorized -- Invalid ApiKey'});
+	if(config.dev.checkApiKey) {
+		var apikey = req.headers.apikey || req.query.apikey || req.body.apikey;
+		if ( apikey !== 'undefined ') {
+			if ( apikey === config.dev.apikey ) {
+				// do any backdoor coding here
+				next();
+			} else {
+				User.findByApiKey(apikey, function(err, user) {
+					if (err) {res.send(err); }
+					if (user.length === 0) {
+						res.status(401).send({'status': 'fail', 'message': 'Unauthorized -- Invalid ApiKey'});
+					}
+				});
+			}
+		} else {
+			res.status(401).send({'status': 'fail', 'message': 'Unauthorized -- Invalid ApiKey'});
 		}
-	});
+	}
 
 	// make sure to call next() or everything will come to a screeching
 	// halt and application will be non responsive
-	next();
+
 });
 
 app.use('/', router);

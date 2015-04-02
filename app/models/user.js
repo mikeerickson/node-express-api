@@ -1,3 +1,5 @@
+'use strict';
+
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
@@ -10,9 +12,11 @@ var UserSchema    = new Schema({
 	updated_at:    { type: Date, default: Date.now }
 });
 
+// CUSTOM METHODS
+// =============================================================================
+
 UserSchema.statics.findByApiKey = function findByApiKey (apikey, cb) {
-	console.log('inner ', apikey);
   return this.where('apikey', apikey).exec(cb);
-}
+};
 
 module.exports = mongoose.model('User', UserSchema);
