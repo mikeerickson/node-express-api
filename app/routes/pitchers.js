@@ -13,10 +13,10 @@ router.route('/')
 	.post(function(req, res) {
 		var pitcher = new Pitcher();		// create a new instance of the Pitcher model
 		pitcher.set(req.body);
-		pitcher.save(function(err) {
+		pitcher.save(function(err, pitcher) {
 			if (err) {res.send(err); }
 
-			res.json({ status: 'OK', message: 'Pitcher Create Successfully' });
+			res.json({ status: 'OK', id: pitcher._id, message: 'Pitcher Create Successfully' });
 		});
 	})
 

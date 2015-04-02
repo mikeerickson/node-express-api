@@ -1,6 +1,8 @@
+'use strict';
+
 var express = require('express');
-var Batter = require('../models/batter');
-var router = express.Router();
+var Batter  = require('../models/batter');
+var router  = express.Router();
 
 // CONFIGURE BATTERS API ROUTES
 // =============================================================================
@@ -12,13 +14,11 @@ router.route('/')
 	// create a batter (accessed at POST http://localhost:3000/batters)
 	.post(function(req, res) {
 		var batter = new Batter();		// create a new instance of the Batter model
-		console.log(req.body);
 		batter.set(req.body);
-		batter.save(function(err) {
+		batter.save(function(err, batter) {
 			if (err) {res.send(err); }
 
-			console.log('in post');
-			res.json({ status: 'OK', message: 'Batter created' });
+			res.json({ id: batter._id, status: 'OK', message: 'Batter created' });
 		});
 	})
 

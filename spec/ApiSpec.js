@@ -72,7 +72,7 @@ describe('api testing', function() {
 			});
 	});
 
-	it("GET should perform standard request with :batter_id", function(done) {
+	it("GET should perform standard request with :id", function(done) {
 		var batterID = '5511b9ab6379da8d0b749fcd';
 		this.options.url += '/batters/' + batterID;
 		unirest.get(this.options.url)
@@ -110,18 +110,56 @@ describe('api testing', function() {
 	});
 
 	it("PUT should update an existing resource", function(done) {
-		expect(true).toBe(true);
-		done();
+		var batterID = '5511b9ab6379da8d0b749fcd';
+		this.options.url += '/batters/' + batterID;
+		var batter = {
+			HR: 31
+		};
+
+		unirest.put(this.options.url)
+			.header('Accept', 'application/json')
+			.header('apikey', config.dev.apikey)
+			.send(batter)
+			.end(function (response) {
+				var success = { status: 'OK', message: 'Batter Updated' };
+				expect(response.body.status).toBe('OK');
+				done();
+			});
 	});
 
 	it("PATCH should update an existing resource", function(done) {
 		expect(true).toBe(true);
 		done();
+		var batterID = '5511b9ab6379da8d0b749fcd';
+		this.options.url += '/batters/' + batterID;
+		var batter = {
+			HR: 29
+		};
+
+		unirest.patch(this.options.url)
+			.header('Accept', 'application/json')
+			.header('apikey', config.dev.apikey)
+			.send(batter)
+			.end(function (response) {
+				var success = { status: 'OK', message: 'Batter Updated' };
+				expect(response.body.status).toBe('OK');
+				done();
+			});
+
 	});
 
 	it("DELETE should delete a resource", function(done) {
-		expect(true).toBe(true);
-		done();
+		var batterID = '551cb130d7ce22b8a4000003';
+		this.options.url += '/batters/' + batterID;
+
+		unirest.delete(this.options.url)
+			.header('Accept', 'application/json')
+			.header('apikey', config.dev.apikey)
+			.send()
+			.end(function (response) {
+				expect(response.body.status).toBe('OK');
+				done();
+			});
 	});
 });
 
