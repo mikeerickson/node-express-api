@@ -1,4 +1,5 @@
-var mongoose = require('mongoose');
+'use strict';
 
-var Batter = require('./batter');
+var Batter  = require('./batter');
 var Pitcher = require('./pitcher');
+var Manager = require('./manager');

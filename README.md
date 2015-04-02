@@ -17,8 +17,9 @@ Complete the following tasks if getting started (you can skip step 3 if you want
 2. Install application dependencies
 	- <pre>npm install</pre>
 3. Import `batters.json` sample data
-	- <pre>$ mongoimport -d players -c batters --file batters.json</pre>
-	- <pre>$ mongoimport -d players -c pitchers --file pitchers.json</pre>
+	- <pre>$ mongoimport -d players -c batters --file seeds/batters.json </pre>
+	- <pre>$ mongoimport -d players -c pitchers --file seeds/pitchers.json </pre>
+	- <pre>$ mongoimport -d players -c managers --file seeds/managers.json </pre>
 4. Start MongoDB server daemon
 	- <pre>$ mongod</pre>
 5. Start the server
@@ -34,8 +35,13 @@ Test your API using [Postman](https://chrome.google.com/webstore/detail/postman-
 
 ## Change History
 
+20140401 - 0.3.0:
+- Added `managers` endpoint
+- Added a complete API test suite
+	<pre> $ npm test </pre>
+
 20140331 - 0.2.0:
-- Added `players` endpoint
+- Added `pitchers` endpoint
 - Refactored code to place routes in separate `routes` directory
 - Added `apikey` authentication
 

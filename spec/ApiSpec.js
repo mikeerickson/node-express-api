@@ -110,11 +110,10 @@ describe('api testing', function() {
 	});
 
 	it("PUT should update an existing resource", function(done) {
+
 		var batterID = '5511b9ab6379da8d0b749fcd';
 		this.options.url += '/batters/' + batterID;
-		var batter = {
-			HR: 31
-		};
+		var batter = { HR: 31 };
 
 		unirest.put(this.options.url)
 			.header('Accept', 'application/json')
@@ -130,11 +129,10 @@ describe('api testing', function() {
 	it("PATCH should update an existing resource", function(done) {
 		expect(true).toBe(true);
 		done();
+
 		var batterID = '5511b9ab6379da8d0b749fcd';
 		this.options.url += '/batters/' + batterID;
-		var batter = {
-			HR: 29
-		};
+		var batter = { HR: 29 };
 
 		unirest.patch(this.options.url)
 			.header('Accept', 'application/json')
