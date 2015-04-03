@@ -15,8 +15,6 @@ var bodyParser = require('body-parser');
 var morgan     = require('morgan');
 var chalk      = require('chalk');
 var app        = express();
-var User       = require('./app/models/user');
-var Auth       = require('./app/core/apiAuthentication');
 
 var appName    = config.defaults.appName;
 // SETUP APPLICATION
@@ -40,29 +38,24 @@ console.log(chalk.green('Connected to ' + connection.database.url));
 
 // LOAD MODELS
 // =============================================================================
-// Only using batter and pitcher models, but you could use other models as needed
-// Note: You will need to expand API ROUTES accordingly
-
 var models = require('./app/models');
+
 
 // CONFIGURE ROUTE MIDDLEWARE
 // =============================================================================
-
+var Auth   = require('./app/core/apiAuthentication');
 var router = express.Router();
 
 // attach global middleware to use for all requests
 router.use(function(req, res, next) {
-	// Examples (will be added in future versions of this code)
-	// - perform rate limit
-	// - perform authentication
-	// - perform logging
-	var err = Auth.isAuthenticated(req, res, next);
+	Auth.isAuthenticated(req, res, next);
 
 	// make sure to call next() or everything will come to a screeching
 	// halt and application will be non responsive
 	next();
 });
 
+// attach to router object
 app.use('/', router);
 
 // CONFIGURE NON-API ROUTES
@@ -72,7 +65,7 @@ app.use('/', router);
 // CONFIGURE API ROUTES
 // =============================================================================
 
-// load all the routes
+// load all the API routes (see ./app/routes/index.js for details)
 var routes = require('./app/routes');
 
 // and finally attach router to API prefix
