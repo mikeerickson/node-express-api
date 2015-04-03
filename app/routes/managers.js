@@ -24,9 +24,8 @@ router.route('/')
 
 	// get all the managers (accessed at GET http://localhost:3000/api/v1/managers)
 	.get(function(req, res) {
-		console.log(req.query);
 		Manager.find(req.query,function(err, managers) {
-			if (err) {res.send(err); }
+			if (err) {res.status(404).send(err); }
 
 			res.json(managers);
 		});
@@ -40,7 +39,7 @@ router.route('/:manager_id')
 // get the better with that id
 .get(function(req, res) {
 	Manager.findById(req.params.manager_id, function(err, manager) {
-		if (err) {res.send(err); }
+		if (err) { res.status(404).send(err); }
 
 		res.json(manager);
 	});

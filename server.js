@@ -16,6 +16,7 @@ var morgan     = require('morgan');
 var chalk      = require('chalk');
 var app        = express();
 var User       = require('./app/models/user');
+var Auth       = require('./app/core/apiAuthentication');
 
 var appName    = config.defaults.appName;
 // SETUP APPLICATION
@@ -55,29 +56,11 @@ router.use(function(req, res, next) {
 	// - perform rate limit
 	// - perform authentication
 	// - perform logging
-
-	if(config.dev.checkApiKey) {
-		var apikey = req.headers.apikey || req.query.apikey || req.body.apikey;
-		if ( apikey !== 'undefined ') {
-			if ( apikey === config.dev.apikey ) {
-				// do any backdoor coding here
-				next();
-			} else {
-				User.findByApiKey(apikey, function(err, user) {
-					if (err) {res.send(err); }
-					if (user.length === 0) {
-						res.status(401).send({'status': 'fail', 'message': 'Unauthorized -- Invalid ApiKey'});
-					}
-				});
-			}
-		} else {
-			res.status(401).send({'status': 'fail', 'message': 'Unauthorized -- Invalid ApiKey'});
-		}
-	}
+	var err = Auth.isAuthenticated(req, res, next);
 
 	// make sure to call next() or everything will come to a screeching
 	// halt and application will be non responsive
-
+	next();
 });
 
 app.use('/', router);

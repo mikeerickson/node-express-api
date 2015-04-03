@@ -1,3 +1,5 @@
+'use strict';
+
 var config  = require('../config');
 var unirest = require('unirest');
 var chalk   = require('chalk');
@@ -110,7 +112,6 @@ describe('api testing', function() {
 	});
 
 	it("PUT should update an existing resource", function(done) {
-
 		var batterID = '5511b9ab6379da8d0b749fcd';
 		this.options.url += '/batters/' + batterID;
 		var batter = { HR: 31 };
@@ -127,9 +128,6 @@ describe('api testing', function() {
 	});
 
 	it("PATCH should update an existing resource", function(done) {
-		expect(true).toBe(true);
-		done();
-
 		var batterID = '5511b9ab6379da8d0b749fcd';
 		this.options.url += '/batters/' + batterID;
 		var batter = { HR: 29 };
@@ -143,7 +141,6 @@ describe('api testing', function() {
 				expect(response.body.status).toBe('OK');
 				done();
 			});
-
 	});
 
 	it("DELETE should delete a resource", function(done) {
