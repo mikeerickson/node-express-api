@@ -16,10 +16,11 @@ Complete the following tasks if getting started (you can skip step 3 if you want
 	- <pre>https://github.com/mikeerickson/node-express-api.git</pre>
 2. Install application dependencies
 	- <pre>npm install</pre>
-3. Import `batters.json` sample data
+3. Import endpoint sample data (located in `seeds` directory)
 	- <pre>$ mongoimport -d players -c batters --file seeds/batters.json </pre>
 	- <pre>$ mongoimport -d players -c pitchers --file seeds/pitchers.json </pre>
 	- <pre>$ mongoimport -d players -c managers --file seeds/managers.json </pre>
+    - - <pre>$ mongoimport -d players -c teams --file seeds/teams.json </pre>
 4. Start MongoDB server daemon
 	- <pre>$ mongod</pre>
 5. Start the server
@@ -34,6 +35,9 @@ If you want to work with the `players` database using Mongo Shell, use separate 
 Test your API using [Postman](https://chrome.google.com/webstore/detail/postman-rest-client-packa/fhbjgbiflinjbdggehcddcbncdddomop)
 
 ## Change History
+
+20140403 - 0.4.0
+- Added `teams` endpoint
 
 20140401 - 0.3.0:
 - Added `managers` endpoint
