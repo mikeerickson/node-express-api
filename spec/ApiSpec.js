@@ -30,7 +30,7 @@ describe('api testing', function() {
  			'content-type': 'application/x-www-form-urlencoded'
 		  }
 		};
-    });
+  });
 
 	// this section will be executed AFTER each test
     afterEach(function(){});
