@@ -1,4 +1,5 @@
 "use strict";
+
 var taskName    = 'Lint';
 
 var gulp        = require('gulp');

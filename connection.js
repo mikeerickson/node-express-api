@@ -1,3 +1,5 @@
+'use strict';
+
 var connection = function(){
   switch(process.env.NODE_ENV){
     case 'development':
