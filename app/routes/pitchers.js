@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var Pitcher = require('../models/pitcher');
 var router = express.Router();

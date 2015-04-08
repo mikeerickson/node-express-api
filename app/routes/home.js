@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var config  = require('../../config');			// load config object first so we can use immediately
 var router  = express.Router();
