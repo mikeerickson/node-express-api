@@ -95,8 +95,8 @@ describe('api testing', function() {
 			http.head(this.options.url)
 				.header('apikey', config.dev.apikey)
 				.send()
-				.end(function(response){
-					expect(response.body.status).toBe('OK');
+				.end(function(response) {
+					expect(response.status).toBe(200);
 					done();
 				});
 	});
@@ -134,6 +134,7 @@ describe('api testing', function() {
 			.send(batter)
 			.end(function (response) {
 				var success = { status: 'OK', message: 'Batter Updated' };
+				expect(response.status).toBe(200);
 				expect(response.body.status).toBe('OK');
 				done();
 			});
@@ -168,5 +169,6 @@ describe('api testing', function() {
 				done();
 			});
 	});
+
 });
 
