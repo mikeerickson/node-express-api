@@ -36,6 +36,9 @@ Test your API using [Postman](https://chrome.google.com/webstore/detail/postman-
 
 ## Change History
 
+2014.04.11 - 0.5.0
+- Updated jasmine tasks to use Terminal Reporter
+
 2014.04.03 - 0.4.0
 - Added `teams` endpoint
 

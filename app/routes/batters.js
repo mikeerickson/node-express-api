@@ -3,6 +3,7 @@
 var express = require('express');
 var Batter  = require('../models/batter');
 var router  = express.Router();
+var _       = require('lodash');
 
 // CONFIGURE BATTERS API ROUTES
 // =============================================================================
@@ -24,7 +25,12 @@ router.route('/')
 
 	// get all the batters (accessed at GET http://localhost:3000/api/v1/batters)
 	.get(function(req, res) {
-		Batter.find(req.query,function(err, batters) {
+
+		// remove apikey from queryString
+		var q = _.remove(req.query, function(key) {
+			return key !== 'apikey';
+		});
+		Batter.find(q,function(err, batters) {
 			if (err) {res.send(err); }
 
 			res.json(batters);

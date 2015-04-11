@@ -1,7 +1,7 @@
 'use strict';
 
 var config  = require('../config');
-var unirest = require('unirest');
+var http    = require('unirest');
 var chalk   = require('chalk');
 
 // create some quick variables
@@ -24,11 +24,12 @@ describe('api testing', function() {
 	beforeEach(function() {
 		this.options = {
           url: 'http://localhost:3000/api/v1',
-		  headers: {
- 			'apikey': 'gunner',
- 			'Accept': 'application/json',
- 			'content-type': 'application/x-www-form-urlencoded'
-		  }
+          id:  '5511b9ab6379da8d0b749fcd',
+				  headers: {
+			 			'apikey': 'gunner',
+			 			'Accept': 'application/json',
+			 			'content-type': 'application/x-www-form-urlencoded'
+				  }
 		};
   });
 
@@ -36,7 +37,7 @@ describe('api testing', function() {
     afterEach(function(){});
 
 	it("GET should respond with generic api response", function(done) {
-		unirest.get(this.options.url)
+		http.get(this.options.url)
 			.header('Accept', 'application/json')
 			.header('apikey', config.dev.apikey)
 			.send()
@@ -50,7 +51,7 @@ describe('api testing', function() {
 	it("GET should respond with authentication error message", function(done) {
 
 		this.options.url = this.options.url + '/batters';
-		unirest.get(this.options.url)
+		http.get(this.options.url)
 			.header('Accept', 'application/json')
 			.header('apikey', '')
 			.send()
@@ -63,7 +64,7 @@ describe('api testing', function() {
 
 	it("GET should perform standard request", function(done) {
 		this.options.url = this.options.url + '/batters';
-		unirest.get(this.options.url)
+		http.get(this.options.url)
 			.header('Accept', 'application/json')
 			.header('apikey', config.dev.apikey)
 			.send()
@@ -77,7 +78,7 @@ describe('api testing', function() {
 	it("GET should perform standard request with :id", function(done) {
 		var batterID = '5511b9ab6379da8d0b749fcd';
 		this.options.url += '/batters/' + batterID;
-		unirest.get(this.options.url)
+		http.get(this.options.url)
 			.header('Accept', 'application/json')
 			.header('apikey', config.dev.apikey)
 			.send()
@@ -89,6 +90,17 @@ describe('api testing', function() {
 			});
 	});
 
+	it("HEAD should return HEAD object", function(done) {
+			this.options.url += '/batters';
+			http.head(this.options.url)
+				.header('apikey', config.dev.apikey)
+				.send()
+				.end(function(response){
+					expect(response.body.status).toBe('OK');
+					done();
+				});
+	});
+
 	it("POST should create new resource", function(done) {
 		this.options.url += '/batters';
 		var batter = {
@@ -96,11 +108,11 @@ describe('api testing', function() {
 			yearID: '2014',
 			lgID: 'AL',
 			teamID: 'LAA',
-			first_name: 'Kira',
+			first_name: 'Mike',
 			last_name: 'Erickson'
 		};
 
-		unirest.post(this.options.url)
+		http.post(this.options.url)
 			.header('Accept', 'application/json')
 			.header('apikey', config.dev.apikey)
 			.send(batter)
@@ -116,7 +128,7 @@ describe('api testing', function() {
 		this.options.url += '/batters/' + batterID;
 		var batter = { HR: 31 };
 
-		unirest.put(this.options.url)
+		http.put(this.options.url)
 			.header('Accept', 'application/json')
 			.header('apikey', config.dev.apikey)
 			.send(batter)
@@ -132,7 +144,7 @@ describe('api testing', function() {
 		this.options.url += '/batters/' + batterID;
 		var batter = { HR: 29 };
 
-		unirest.patch(this.options.url)
+		http.patch(this.options.url)
 			.header('Accept', 'application/json')
 			.header('apikey', config.dev.apikey)
 			.send(batter)
@@ -143,11 +155,11 @@ describe('api testing', function() {
 			});
 	});
 
-	it("DELETE should delete a resource", function(done) {
+	it("DELETE should delete an existing resource", function(done) {
 		var batterID = '551cb130d7ce22b8a4000003';
 		this.options.url += '/batters/' + batterID;
 
-		unirest.delete(this.options.url)
+		http.delete(this.options.url)
 			.header('Accept', 'application/json')
 			.header('apikey', config.dev.apikey)
 			.send()

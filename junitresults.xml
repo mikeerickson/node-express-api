@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+ <testsuite name="api testing" timestamp="2015-04-11T14:46:24" hostname="localhost" time="0.828" errors="0" tests="8" skipped="0" disabled="0" failures="0">
+  <testcase classname="api testing" name="GET should respond with generic api response" time="0.031">
+  </testcase>
+  <testcase classname="api testing" name="GET should respond with authentication error message" time="0.022">
+  </testcase>
+  <testcase classname="api testing" name="GET should perform standard request" time="0.72">
+  </testcase>
+  <testcase classname="api testing" name="GET should perform standard request with :id" time="0.009">
+  </testcase>
+  <testcase classname="api testing" name="POST should create new resource" time="0.02">
+  </testcase>
+  <testcase classname="api testing" name="PUT should update an existing resource" time="0.009">
+  </testcase>
+  <testcase classname="api testing" name="PATCH should update an existing resource" time="0.009">
+  </testcase>
+  <testcase classname="api testing" name="DELETE should delete a resource" time="0.006">
+  </testcase>
+ </testsuite>
+</testsuites>
