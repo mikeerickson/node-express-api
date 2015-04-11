@@ -1,7 +1,7 @@
 'use strict';
 
 var express = require('express');
-var Manager  = require('../models/manager');
+var Manager = require('../models/manager');
 var router  = express.Router();
 
 // CONFIGURE BATTERS API ROUTES
