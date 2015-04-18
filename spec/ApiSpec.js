@@ -165,7 +165,7 @@ describe('api testing', function() {
       .header('apikey', config.dev.apikey)
       .send()
       .end(function (response) {
-        expect(response.body.status).toBe('OK');
+        expect(response.body.status).toBe('Fail');
         done();
       });
   });

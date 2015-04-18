@@ -36,6 +36,9 @@ Test your API using [Postman](https://chrome.google.com/webstore/detail/postman-
 
 ## Change History
 
+2014.04.12 - 0.5.1
+- Cleaned all the code to remove tabs (where applicable) replacing with spaces (indent level of 2).
+
 2014.04.11 - 0.5.0
 - Updated jasmine tasks to use Terminal Reporter
 

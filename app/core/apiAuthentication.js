@@ -2,6 +2,7 @@
 
 var config = require('../../config');
 var User   = require('../models/user');
+var chalk  = require('chalk');
 
 module.exports = {
   isAuthenticated: function(req, res, next) {

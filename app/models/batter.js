@@ -31,4 +31,11 @@ var BatterSchema   = new Schema({
   updated_at:    { type: Date, default: Date.now }
 });
 
+// CUSTOM METHODS
+// =============================================================================
+
+BatterSchema.statics.getObjectId = function getObjectId (q, cb) {
+  return this.where(q).exec(cb);
+};
+
 module.exports = mongoose.model('Batter', BatterSchema);
