@@ -19,7 +19,6 @@ router.route('/')
     batter.set(req.body);
     batter.save(function(err, batter) {
       if (err) {
-        console.log(err);
         res.status(400).json( {status: 'Fail', 'message': err.message, 'errors': err.errors } );
       }
       res.json({ id: batter._id, status: 'OK', message: 'Batter created' });
@@ -30,7 +29,6 @@ router.route('/')
   .get(function(req, res) {
     // remove apikey from queryString
     var limit = req.query.limit;
-    console.log(limit);
     var q = _.remove(req.query, function(key) {
       return key !== 'apikey';
     });
