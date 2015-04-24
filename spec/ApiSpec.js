@@ -2,21 +2,7 @@
 
 var config  = require('../config');
 var http    = require('unirest');
-var chalk   = require('chalk');
-
-// create some quick variables
-var error   = chalk.red;
-var success = chalk.blue;
-var info    = chalk.yellow;
-var warning = chalk.magenta;
-
-// utility debug wrapper
-function debug(msg) { console.log(warning(msg)); }
-
-// setup the test (this will be executed once)
-beforeEach(function() {
-    this.options = {};
-});
+var msg     = require('../tasks/console');
 
 describe('api testing', function() {
 
@@ -34,7 +20,7 @@ describe('api testing', function() {
   });
 
   // this section will be executed AFTER each test
-    afterEach(function(){});
+  afterEach(function(){});
 
   it("GET should respond with generic api response", function(done) {
     http.get(this.options.url)
@@ -103,14 +89,7 @@ describe('api testing', function() {
 
   it("POST should create new resource", function(done) {
     this.options.url += '/batters';
-    var batter = {
-      playerID: '00001234',
-      yearID: '2014',
-      lgID: 'AL',
-      teamID: 'LAA',
-      first_name: 'Mike',
-      last_name: 'Erickson'
-    };
+    var batter = getSeedData();
 
     http.post(this.options.url)
       .header('Accept', 'application/json')
@@ -170,5 +149,25 @@ describe('api testing', function() {
       });
   });
 
+  it("DELETE should clean up our mess", function(done){
+
+    done();
+  });
+
 });
 
+function getSeedData() {
+
+  var data = {
+    first_name: 'Mike',
+    last_name:  'Erickson',
+    teamID:     'LAA',
+    lgID:       'LA',
+    yearID:     '2014'
+  };
+
+    data.playerID = data.last_name.toLowerCase() + data.first_name.substring(0,3).toLowerCase() + data.yearID;
+
+    return data;
+
+}

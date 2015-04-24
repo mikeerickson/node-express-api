@@ -2,6 +2,7 @@
 
 var express = require('express');
 var Batter  = require('../models/batter');
+var msg     = require('../../tasks/console');
 var router  = express.Router();
 var _       = require('lodash');
 var chalk   = require('chalk');
@@ -18,10 +19,12 @@ router.route('/')
     var batter = new Batter();    // create a new instance of the Batter model
     batter.set(req.body);
     batter.save(function(err, batter) {
+      msg.success('Creating `' + batter.playerID + '` Batter...');
       if (err) {
         res.status(400).json( {status: 'Fail', 'message': err.message, 'errors': err.errors } );
+      } else {
+        res.json({ id: batter._id, status: 'OK', message: 'Batter created' });
       }
-      res.json({ id: batter._id, status: 'OK', message: 'Batter created' });
     });
   })
 
@@ -33,11 +36,15 @@ router.route('/')
       return key !== 'apikey';
     });
 
-    var q = Batter.find(q).limit(limit);
+    q = Batter.find(q).limit(limit);
     q.execFind(function(err, batters) {
-      if (err) {res.send(err); }
+      if (err) {
+        res.status(404).send(err);
+      } else {
+        res.json(batters);
+      }
 
-      res.json(batters);
+
     });
 
   });

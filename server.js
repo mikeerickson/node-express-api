@@ -14,6 +14,8 @@ var express    = require('express');
 var bodyParser = require('body-parser');
 var morgan     = require('morgan');
 var chalk      = require('chalk');
+var msg        = require('./tasks/console');
+
 var app        = express();
 
 var appName    = config.defaults.appName;
@@ -49,7 +51,6 @@ var router = express.Router();
 // attach global middleware to use for all requests
 router.use(function(req, res, next) {
   Auth.isAuthenticated(req, res, next);
-
   // make sure to call next() or everything will come to a screeching
   // halt and application will be non responsive
   next();
