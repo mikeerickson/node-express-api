@@ -159,7 +159,7 @@ describe('api testing', function() {
 function getSeedData() {
 
   var data = {
-    first_name: 'Mike',
+    first_name: 'Kira',
     last_name:  'Erickson',
     teamID:     'LAA',
     lgID:       'LA',

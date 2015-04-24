@@ -26,7 +26,7 @@ describe('batter: testing', function(done) {
     expect('False').toBe('False');
   });
 
-  it("should return an error when missing objects are not supplied", function() {
+  it("should return an error when missing objects are not supplied", function(done) {
 
     var data   = getSeedData();
     var batter = new Batter();    // create a new instance of the Batter model
@@ -37,11 +37,17 @@ describe('batter: testing', function(done) {
       batter.save(function(err, batter) {
         if(err) { console.log(err); }
         console.log('test');
-        done();
       });
 
     });
 
+    done();
+
+  });
+
+  it("should delete a collection of documents", function(done) {
+    Batter.find({last_name: 'Erickson'}).remove().exec();
+    done();
   });
 
 });
