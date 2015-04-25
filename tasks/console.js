@@ -3,13 +3,12 @@
 
 'use strict';
 
-var chalk = require('chalk');
+var chalk   = require('chalk');
 // create some quick variables
 
 var error   = chalk.red;
 var success = chalk.blue;
 var info    = chalk.yellow;
-var warning = chalk.magenta;
 
 module.exports = {
 

@@ -1,28 +1,48 @@
 'use strict';
 
-var config  = require('../config');
-var msg     = require('../tasks/console');
-var http    = require('unirest');
+var should  = require('should');
+var chai    = require('chai');
+var winston = require('winston');
 
-// load up the required models
+// CONFIGURE LOGGER
+// =============================================================================
+var options = {
+  filename:    'spec/logs/batter-test.log',
+  silent:      false,
+  timestamp:   true,
+  prettyPrint: true
+};
+
+winston.add(winston.transports.DailyRotateFile, options)
+winston.remove(winston.transports.Console); // suppress console output
+
+
+// LOAD MODELSE
+// =============================================================================
 var Batter  = require('../app/models/batter');
 
 
+// DESCRIBE SCENARIOS
+// =============================================================================
 describe('batter: testing', function(done) {
-
+  winston.info('test');
   // this section will be executed BEFORE each test
   beforeEach(function() {
+    winston.info('this is a winston log, where does it arrive');
     this.options = {};
   });
 
   // this section will be executed AFTER each test
-  afterEach(function(){});
+  afterEach(function(){
+  });
 
   it("should succeed", function() {
+    winston.info('should succeed');
     expect('True').toBe('True');
   });
 
   it("should succeed", function() {
+    winston.info('shoud succeed');
     expect('False').toBe('False');
   });
 
@@ -33,12 +53,11 @@ describe('batter: testing', function(done) {
 
     batter.set(data);
     batter.validate(function(err) {
-      if(err) { console.log(err) };
+      if(err) { winston.error(err) };
       batter.save(function(err, batter) {
-        if(err) { console.log(err); }
-        console.log('test');
+        if(err) { winston.error(err); }
+        winston.log('test');
       });
-
     });
 
     done();
@@ -46,12 +65,27 @@ describe('batter: testing', function(done) {
   });
 
   it("should delete a collection of documents", function(done) {
-    Batter.find({last_name: 'Erickson'}).remove().exec();
-    done();
+
+    Batter.find({ last_name : 'Erickson'}, function (err, batter, done) {
+      if (err) { winston.error(err); }
+        batter.remove(function (err) {
+            if(err) { winston.error(err); }
+            winston.success('removed');
+        });
+      });
+      done();
+    });
+
+  it("should delete a collection of documents again", function() {
+    Batter.find({ last_name: 'Erickson' }).remove().exec();
   });
 
 });
 
+// SUPPORT FUNCTIONS
+// =============================================================================
+
+// seed Batter data
 function getSeedData() {
 
   var data = {
