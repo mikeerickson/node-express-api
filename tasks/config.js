@@ -5,6 +5,10 @@
 
 module.exports = {
 
+	logs: {
+		dir: ['spec/logs']
+	},
+
 	lint: {
 		src:  ['./server.js','app/**/*.js']
 	},

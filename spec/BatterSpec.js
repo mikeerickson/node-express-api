@@ -3,6 +3,7 @@
 var should  = require('should');
 var chai    = require('chai');
 var winston = require('winston');
+var mkdirp  = require('mkdirp');
 
 // CONFIGURE LOGGER
 // =============================================================================
@@ -12,6 +13,10 @@ var options = {
   timestamp:   true,
   prettyPrint: true
 };
+
+mkdirp('spec/logs', function (err) {
+    if (err) { winston.error(err); }
+});
 
 winston.add(winston.transports.DailyRotateFile, options)
 winston.remove(winston.transports.Console); // suppress console output
