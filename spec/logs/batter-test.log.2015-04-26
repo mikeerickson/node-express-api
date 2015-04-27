@@ -14,3 +14,131 @@
 {"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-26T22:22:52.866Z"}
 {"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-26T22:22:52.871Z"}
 {"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-26T22:22:52.873Z"}
+{"level":"info","message":"test","timestamp":"2015-04-26T23:47:02.714Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-26T23:47:04.253Z"}
+{"level":"info","message":"should succeed","timestamp":"2015-04-26T23:47:04.254Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-26T23:47:04.254Z"}
+{"level":"info","message":"shoud succeed","timestamp":"2015-04-26T23:47:04.255Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-26T23:47:04.255Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-26T23:47:04.260Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-26T23:47:04.263Z"}
+{"level":"info","message":"test","timestamp":"2015-04-26T23:57:01.872Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-26T23:57:03.626Z"}
+{"level":"info","message":"should succeed","timestamp":"2015-04-26T23:57:03.627Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-26T23:57:03.627Z"}
+{"level":"info","message":"shoud succeed","timestamp":"2015-04-26T23:57:03.627Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-26T23:57:03.628Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-26T23:57:03.634Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-26T23:57:03.637Z"}
+{"level":"info","message":"test","timestamp":"2015-04-26T23:59:07.674Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-26T23:59:09.534Z"}
+{"level":"info","message":"should succeed","timestamp":"2015-04-26T23:59:09.534Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-26T23:59:09.535Z"}
+{"level":"info","message":"shoud succeed","timestamp":"2015-04-26T23:59:09.535Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-26T23:59:09.535Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-26T23:59:09.542Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-26T23:59:09.544Z"}
+{"level":"info","message":"test","timestamp":"2015-04-27T00:06:29.629Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:06:31.265Z"}
+{"level":"info","message":"should succeed","timestamp":"2015-04-27T00:06:31.266Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:06:31.267Z"}
+{"level":"info","message":"shoud succeed","timestamp":"2015-04-27T00:06:31.267Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:06:31.267Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:06:31.273Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:06:31.276Z"}
+{"level":"info","message":"test","timestamp":"2015-04-27T00:06:54.774Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:06:56.551Z"}
+{"level":"info","message":"should succeed","timestamp":"2015-04-27T00:06:56.552Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:06:56.552Z"}
+{"level":"info","message":"shoud succeed","timestamp":"2015-04-27T00:06:56.553Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:06:56.553Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:06:56.560Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:06:56.562Z"}
+{"level":"info","message":"test","timestamp":"2015-04-27T00:07:58.724Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:08:00.216Z"}
+{"level":"info","message":"should succeed","timestamp":"2015-04-27T00:08:00.217Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:08:00.218Z"}
+{"level":"info","message":"shoud succeed","timestamp":"2015-04-27T00:08:00.218Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:08:00.218Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:08:00.225Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:08:00.228Z"}
+{"level":"info","message":"test","timestamp":"2015-04-27T00:08:02.454Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:08:04.119Z"}
+{"level":"info","message":"should succeed","timestamp":"2015-04-27T00:08:04.120Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:08:04.120Z"}
+{"level":"info","message":"shoud succeed","timestamp":"2015-04-27T00:08:04.120Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:08:04.120Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:08:04.127Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:08:04.131Z"}
+{"level":"info","message":"test","timestamp":"2015-04-27T00:17:39.920Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:17:41.352Z"}
+{"level":"info","message":"should succeed","timestamp":"2015-04-27T00:17:41.353Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:17:41.353Z"}
+{"level":"info","message":"shoud succeed","timestamp":"2015-04-27T00:17:41.354Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:17:41.354Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:17:41.362Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:17:41.365Z"}
+{"level":"info","message":"test","timestamp":"2015-04-27T00:20:34.997Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:20:36.835Z"}
+{"level":"info","message":"should succeed","timestamp":"2015-04-27T00:20:36.836Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:20:36.836Z"}
+{"level":"info","message":"shoud succeed","timestamp":"2015-04-27T00:20:36.836Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:20:36.836Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:20:36.843Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:20:36.846Z"}
+{"level":"info","message":"test","timestamp":"2015-04-27T00:26:20.760Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:26:22.404Z"}
+{"level":"info","message":"should succeed","timestamp":"2015-04-27T00:26:22.405Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:26:22.406Z"}
+{"level":"info","message":"shoud succeed","timestamp":"2015-04-27T00:26:22.406Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:26:22.406Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:26:22.416Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:26:22.420Z"}
+{"level":"info","message":"test","timestamp":"2015-04-27T00:26:42.781Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:26:45.245Z"}
+{"level":"info","message":"should succeed","timestamp":"2015-04-27T00:26:45.247Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:26:45.248Z"}
+{"level":"info","message":"shoud succeed","timestamp":"2015-04-27T00:26:45.248Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:26:45.248Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:26:45.259Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:26:45.262Z"}
+{"level":"info","message":"test","timestamp":"2015-04-27T00:43:15.683Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:43:17.438Z"}
+{"level":"info","message":"should succeed","timestamp":"2015-04-27T00:43:17.439Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:43:17.440Z"}
+{"level":"info","message":"shoud succeed","timestamp":"2015-04-27T00:43:17.440Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:43:17.440Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:43:17.447Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:43:17.450Z"}
+{"level":"info","message":"test","timestamp":"2015-04-27T00:44:27.759Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:44:29.445Z"}
+{"level":"info","message":"should succeed","timestamp":"2015-04-27T00:44:29.445Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:44:29.446Z"}
+{"level":"info","message":"shoud succeed","timestamp":"2015-04-27T00:44:29.446Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:44:29.446Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:44:29.453Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:44:29.456Z"}
+{"level":"info","message":"test","timestamp":"2015-04-27T00:44:56.689Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:44:58.482Z"}
+{"level":"info","message":"should succeed","timestamp":"2015-04-27T00:44:58.483Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:44:58.484Z"}
+{"level":"info","message":"shoud succeed","timestamp":"2015-04-27T00:44:58.484Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:44:58.484Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:44:58.491Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:44:58.494Z"}
+{"level":"info","message":"test","timestamp":"2015-04-27T00:45:21.052Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:45:22.764Z"}
+{"level":"info","message":"should succeed","timestamp":"2015-04-27T00:45:22.765Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:45:22.765Z"}
+{"level":"info","message":"shoud succeed","timestamp":"2015-04-27T00:45:22.765Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:45:22.765Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:45:22.772Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T00:45:22.775Z"}
+{"level":"info","message":"test","timestamp":"2015-04-27T03:20:00.813Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T03:20:04.032Z"}
+{"level":"info","message":"should succeed","timestamp":"2015-04-27T03:20:04.033Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T03:20:04.034Z"}
+{"level":"info","message":"shoud succeed","timestamp":"2015-04-27T03:20:04.034Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T03:20:04.034Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T03:20:04.041Z"}
+{"level":"info","message":"this is a winston log, where does it arrive","timestamp":"2015-04-27T03:20:04.044Z"}

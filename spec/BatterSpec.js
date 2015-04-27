@@ -61,17 +61,14 @@ describe('batter: testing', function(done) {
       if(err) { winston.error(err) };
       batter.save(function(err, batter) {
         if(err) { winston.error(err); }
-        winston.log('test');
       });
     });
-
     done();
-
   });
 
   it("should delete a collection of documents", function(done) {
 
-    Batter.find({ last_name : 'Erickson'}, function (err, batter, done) {
+    Batter.find({ last_name : "erickson"}, function (err, batter, done) {
       if (err) { winston.error(err); }
         batter.remove(function (err) {
             if(err) { winston.error(err); }
@@ -82,7 +79,7 @@ describe('batter: testing', function(done) {
     });
 
   it("should delete a collection of documents again", function() {
-    Batter.find({ last_name: 'Erickson' }).remove().exec();
+    Batter.find({ last_name: "erickson" }).remove().exec();
   });
 
 });
@@ -95,7 +92,7 @@ function getSeedData() {
 
   var data = {
     first_name: 'Mike',
-    last_name:  'Erickson',
+    last_name:  'erickson',
     teamID:     'LAA',
     lgID:       'LA',
     yearID:     '2014'
