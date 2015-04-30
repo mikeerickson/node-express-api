@@ -17,9 +17,9 @@ router.route('/')
   // create a batter (accessed at POST http://localhost:3000/batters)
   .post(function(req, res) {
     var batter = new Batter();    // create a new instance of the Batter model
+
     batter.set(req.body);
     batter.save(function(err, batter) {
-      msg.success('Creating `' + batter.playerID + '` Batter...');
       if (err) {
         res.status(400).json( {status: 'Fail', 'message': err.message, 'errors': err.errors } );
       } else {
@@ -37,13 +37,12 @@ router.route('/')
     });
 
     q = Batter.find(q).limit(limit);
-    q.execFind(function(err, batters) {
+    q.exec(function(err, batters) {
       if (err) {
         res.status(404).send(err);
       } else {
-        res.json(batters);
+        res.status(200).json(batters);
       }
-
 
     });
 

@@ -6,7 +6,7 @@ var gulp      = require('gulp');
 var jasmine   = require('gulp-jasmine');
 var reporters = require('jasmine-reporters');
 
-gulp.task('test:js', function () {
+gulp.task('test:jasmine', function () {
 	return gulp.src('spec/**/*Spec.js')
 	  .pipe(jasmine({
 	      reporter: new reporters.TerminalReporter({color: true, verbosity: 3})

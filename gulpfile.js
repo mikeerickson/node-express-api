@@ -28,15 +28,15 @@ gulp.task('start', function () {
 // script edits and lint them
 gulp.task('watch', ['start'], function(){
 	gulp.watch(config.lint.src, ['lint']);
-	gulp.watch(config.jasmine.src, ['test:js']);
+	gulp.watch(config.test.src, ['test:mocha']);
 });
 
 gulp.task('tdd', function(){
-  gulp.watch(config.jasmine.src, ['test:js']);
+  gulp.watch(config.test.src, ['test:mocha']);
 });
 
 gulp.task('test', function(){
-	gulp.watch(config.jasmine.src, ['test:js']);
+	gulp.watch(config.test.src, ['test:mocha']);
 });
 
 gulp.task('default',['start'], function(){

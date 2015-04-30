@@ -3,6 +3,7 @@
 var config = require('../../config');
 var User   = require('../models/user');
 var chalk  = require('chalk');
+var msg    = require('../../tasks/console');
 
 module.exports = {
   isAuthenticated: function(req, res, next) {
@@ -13,7 +14,7 @@ module.exports = {
           return true;
         } else {
           User.findByApiKey(apikey, function(err, user) {
-            if (err) {res.send(err); }
+            if (err) { res.send(err); }
             if (user.length === 0) {
               res.status(401).send({'status': 'fail', 'message': 'Unauthorized -- Invalid ApiKey'});
             }

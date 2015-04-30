@@ -9,7 +9,7 @@ var BatterSchema   = new Schema({
   first_name:    {type: String, required: true},
   last_name:     {type: String, required: true},
   bats:          {type: String},
-  throws:        {type: String},
+  'throws':        {type: String},
   G:             {type: Number},
   AB:            {type: Number},
   R:             {type: Number},

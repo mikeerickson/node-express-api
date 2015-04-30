@@ -1,0 +1,10 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+	"editor.fontFamily": "Source Code Pro",
+
+	// Controls the font size.
+	"editor.fontSize": 15,
+
+	// Controls the line height.
+	"editor.lineHeight": 5,
+}

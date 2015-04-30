@@ -8,6 +8,7 @@
 
 'use strict';
 
+
 var config     = require('./config'); // load config object first so we can use immediately
 var connection = require('./connection');
 var express    = require('express');

@@ -1,85 +1,139 @@
 'use strict';
 
-var should  = require('should');
-var chai    = require('chai');
-var winston = require('winston');
-var mkdirp  = require('mkdirp');
-
-// CONFIGURE LOGGER
-// =============================================================================
-var options = {
-  filename:    'spec/logs/batter-test.log',
-  silent:      false,
-  timestamp:   true,
-  prettyPrint: true
-};
-
-mkdirp('spec/logs', function (err) {
-    if (err) { winston.error(err); }
-});
-
-winston.add(winston.transports.DailyRotateFile, options)
-winston.remove(winston.transports.Console); // suppress console output
-
+var should   = require('should');
+var chai     = require('chai');
+var assert   = require('chai').assert;
+var expect   = require('chai').expect;
+var msg      = require('../tasks/console');
+var mongoose = require('../app/core/db.js');
 
 // LOAD MODELSE
 // =============================================================================
 var Batter  = require('../app/models/batter');
+var User = require('../app/models/user');
 
 
 // DESCRIBE SCENARIOS
 // =============================================================================
 describe('batter: testing', function(done) {
-  winston.info('test');
   // this section will be executed BEFORE each test
   beforeEach(function() {
-    winston.info('this is a winston log, where does it arrive');
     this.options = {};
   });
 
-  // this section will be executed AFTER each test
-  afterEach(function(){
-  });
+  describe("should perform standard CRUD operations", function(done) {
 
-  it("should succeed", function() {
-    winston.info('should succeed');
-    expect('True').toBe('True');
-  });
+    var seedData  = getSeedData();
+    var last_name = 'ericson';
 
-  it("should succeed", function() {
-    winston.info('shoud succeed');
-    expect('False').toBe('False');
-  });
+    beforeEach(function() {
+      this.options = {};
+    });
 
-  it("should return an error when missing objects are not supplied", function(done) {
-
-    var data   = getSeedData();
-    var batter = new Batter();    // create a new instance of the Batter model
-
-    batter.set(data);
-    batter.validate(function(err) {
-      if(err) { winston.error(err) };
+    // create
+    it("should create new batter", function() {
+      var batter = new Batter(seedData);
+      batter.last_name = 'ericson';
       batter.save(function(err, batter) {
-        if(err) { winston.error(err); }
+        expect(batter).to.be.an('object');
+        expect(batter.last_name).to.be.equal('ericson');
       });
     });
-    done();
+
+    // read
+    it("should read batter information", function() {
+
+      var q = Batter.find({last_name: 'Trout'}).limit(1);
+      q.exec(function(err, batters) {
+        if(err){ msg.error(err); }
+        expect(batters.length).to.be.equal(1);
+        assert(batters);
+        expect(batters[0].last_name).to.be.equal('Trout');
+      });
+
+    });
+
+    // update
+    it("shold update batter data", function() {
+      Batter.find(/trout/i, function(err, data){
+        if(err){ msg.error(err); }
+        var batter = data[0];
+        batter.HR = batter.HR;
+        batter.save(function(err){
+          if(err){ msg.error(err); }
+          assert(batter);
+        });
+      });
+    });
+
+    // delate
+    it("should delete a batter", function() {
+      Batter.remove({last_name: 'Ericson'}, function(err){
+        if(err){ msg.error(err); }
+
+      });
+    });
+
   });
 
-  it("should delete a collection of documents", function(done) {
+  describe("should perform some other random tests", function() {
 
-    Batter.find({ last_name : "erickson"}, function (err, batter, done) {
-      if (err) { winston.error(err); }
-        batter.remove(function (err) {
-            if(err) { winston.error(err); }
-            winston.success('removed');
+    it("should pass simple test to confirm this thing is", function() {
+      expect(true).to.equal(true);
+    });
+
+    it("should return an error when missing objects are not supplied", function(done) {
+
+      var data   = getSeedData();
+      var batter = new Batter();    // create a new instance of the Batter model
+
+      batter.set(data);
+      batter.validate(function(err) {
+        if(err) { msg.error(err) };
+        batter.save(function(err, batter) {
+          if(err) { msg.error(err); }
         });
       });
       done();
     });
 
-  it("should delete a collection of documents again", function() {
-    Batter.find({ last_name: "erickson" }).remove().exec();
+    it("should test the User.findByApiKey routine", function() {
+      var apikey = '1234';
+      User.findByApiKey(apikey, function(err, data){
+        if(err){ msg.error(err); }
+        expect(data[0].apikey).to.be.equal(apikey);
+      });
+
+    });
+
+    it("should return batter data", function(done) {
+
+      // create temp batter, will be deleted below
+      var batter = new Batter(getSeedData());
+      batter.save(function(err, batter){
+        if (err) { msg.error(err); }
+      });
+
+      Batter.find({last_name: 'erickson'}, function(err, data){
+        if (err) { msg.error(err); }
+        var batter = data[0];
+        expect(batter.last_name).to.be.equal('erickson');
+      });
+
+      done();
+
+    });
+
+    it("should delete specific record, using alternate technique", function(done) {
+
+      Batter.remove({last_name: /erickson/i}, function(err) {
+        if (err) { msg.error(err); }
+        // msg.success('Batter Removed');
+      });
+
+      done();
+    });
+
   });
 
 });
@@ -102,4 +156,16 @@ function getSeedData() {
 
   return data;
 
+}
+
+function createBatter()
+{
+  var data = getSeedData();
+
+  var batter = new Batter(data);
+  batter.save(function(err, batter){
+    if (err) { msg.error(err); }
+
+    msg.success('Batter Created Successfully');
+  })
 }

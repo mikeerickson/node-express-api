@@ -13,7 +13,7 @@ module.exports = {
 		src:  ['./server.js','app/**/*.js']
 	},
 
-	jasmine: {
+	test: {
 		src: ['./spec/**/*Spec.js', './server.js', 'app/**/*.js']
 	}
 
