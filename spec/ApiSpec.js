@@ -27,14 +27,6 @@ describe('api testing', function() {
   // this section will be executed AFTER each test
   afterEach(function(){});
 
-  xit("should test all the messsage routines", function() {
-    msg.info('info');
-    msg.error('error');
-    msg.success('success');
-    msg.warning('warning');
-    expect(true).to.be.equal(true);
-  });
-
   it("GET should contain response to home route", function(done) {
     http.get(this.options.url)
       .header('Accept', 'application/json')

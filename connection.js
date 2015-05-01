@@ -23,6 +23,16 @@ var connection = function(){
         }
       };
 
+    case 'testing':
+      return {
+        'http': {
+          'port': 3000
+        },
+        'database': {
+          'url': 'mongodb://localhost:27017/players-test'
+        }
+      };
+
     default:
       return {
          'http': {

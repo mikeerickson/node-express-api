@@ -8,7 +8,6 @@
 
 'use strict';
 
-
 var config     = require('./config'); // load config object first so we can use immediately
 var connection = require('./connection');
 var express    = require('express');
@@ -18,8 +17,10 @@ var chalk      = require('chalk');
 var msg        = require('./tasks/console');
 
 var app        = express();
-
 var appName    = config.defaults.appName;
+
+msg.init();
+
 // SETUP APPLICATION
 // =============================================================================
 
@@ -35,8 +36,10 @@ app.use(bodyParser.json());
 // =============================================================================
 var mongoose   = require('mongoose');
 
+console.log(chalk.green('\n================================================================\n'));
+
 mongoose.connect(connection.database.url); // connect to our database
-console.log(chalk.green('Connected to ' + connection.database.url));
+msg.success('Connected to ' + connection.database.url);
 
 
 // LOAD MODELS
@@ -78,4 +81,4 @@ app.use('/api/v1', routes);
 // =============================================================================
 var port = connection.http.port; // set our port from connection
 app.listen(port);
-console.log(chalk.blue(appName +' API Server running on port ' + port));
+msg.info(appName +' API Server running on port ' + port);

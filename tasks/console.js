@@ -3,26 +3,53 @@
 
 'use strict';
 
-var taskName = 'log';
+var taskName = 'console';
 
 var chalk   = require('chalk');
 var winston = require('winston');
+var mkdirp  = require('mkdirp');
 
 // create some quick variables
 
+var debug   = chalk.grey.dim;
 var error   = chalk.red;
 var success = chalk.green;
 var info    = chalk.blue;
 var warning = chalk.magenta;
 
 var options = {
-	logToFile: true
+	logPath: 'logs/',
+	logToFile: true,
 };
+
+var logOptions = {
+	filename: 'app.log'
+}
 
 module.exports = {
 
+	init: function(filename) {
+
+		mkdirp(options.logPath);
+
+		if ( ! (typeof(filename) === 'undefined') ) {
+			logOptions.filename = options.logPath + filename;
+		} else {
+			logOptions.filename = options.logPath + logOptions.filename;
+		}
+
+		// winston.add(winston.transports.DailyRotateFile, logOptions);
+  		winston.remove(winston.transports.Console);
+
+	},
+
+	debug: function(msg) {
+		console.log(debug(msg));
+		options.logToFile ? winston.debug(msg) : '';
+	},
+
 	error: function(msg) {
-		console.log(error(msg));
+		console.error(error(msg));
 		options.logToFile ? winston.log(msg) : '';
 	},
 
@@ -41,10 +68,13 @@ module.exports = {
 		options.logToFile ? winston.log(msg) : '';
 	},
 
+	warn: function(msg) {
+		this.warning(msg);
+	},
+
 	log: function(msg) {
 		console.log(msg);
 		options.logToFile ? winston.log(msg) : '';
 	},
-
 
 };

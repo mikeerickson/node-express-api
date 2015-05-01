@@ -6,7 +6,7 @@
 module.exports = {
 
 	logs: {
-		dir: ['spec/logs']
+		dir: ['logs', 'spec/logs']
 	},
 
 	lint: {
