@@ -27,6 +27,7 @@
     "gulp-mocha": "^2.0.1",
     "gulp-nodemon": "^2.0.2",
     "gulp-rimraf": "^0.1.1",
+    "gulp-todo": "^2.6.0",
     "jshint-stylish": "^1.0.1",
     "lodash": "^3.5.0",
     "mkdirp": "^0.5.0",

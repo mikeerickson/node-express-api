@@ -6,12 +6,14 @@
 module.exports = {
 
   defaults: {
-    appName: 'MLB Player Stats',
+    src:         ['/**/*.js'],
+    appName:     'MLB Player Stats',
     connection:  'mongodb://localhost:27017/players',
     port: 3000
   },
 
   dev: {
+    src:         ['/**/*.js'],
     connection:  'mongodb://localhost:27017/players',
     port:        3000,
     apikey:      'gunner',
@@ -22,4 +24,5 @@ module.exports = {
     connection: 'mongodb://localhost:27017/players',
     port: 3000
   }
+
 };

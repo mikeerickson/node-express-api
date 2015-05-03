@@ -9,6 +9,10 @@ module.exports = {
 		dir: ['logs', 'spec/logs']
 	},
 
+	scripts: {
+		src: ['./server.js','app/**/*.js']
+	},
+
 	lint: {
 		src:  ['./server.js','app/**/*.js']
 	},

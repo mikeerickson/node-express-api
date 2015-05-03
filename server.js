@@ -55,9 +55,12 @@ var router = express.Router();
 // attach global middleware to use for all requests
 router.use(function(req, res, next) {
   Auth.isAuthenticated(req, res, next);
-  // make sure to call next() or everything will come to a screeching
-  // halt and application will be non responsive
-  next();
+  Auth.checkRateLimit(req, res, next);
+
+  // if you dont properly handle next in your middleware, things will come
+  // to a screeching halt.
+  // next();
+
 });
 
 // attach to router object

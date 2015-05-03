@@ -14,4 +14,5 @@ describe("Console Module", function() {
     msg.warn('warn');
     expect(true).to.be.equal(true);
   });
+
 });
