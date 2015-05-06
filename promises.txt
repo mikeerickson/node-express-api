@@ -1,0 +1,29 @@
+What are promises and why should I use them?
+You should use promises to turn this:
+
+fs.readFile("file.json", function(err, val) {
+    if( err ) {
+        console.error("unable to read file");
+    }
+    else {
+        try {
+            val = JSON.parse(val);
+            console.log(val.success);
+        }
+        catch( e ) {
+            console.error("invalid json in file");
+        }
+    }
+});
+
+into this:
+
+fs.readFileAsync("file.json").then(JSON.parse).then(function(val) {
+    console.log(val.success);
+})
+.catch(SyntaxError, function(e) {
+    console.error("invalid json in file");
+})
+.catch(function(e) {
+    console.error("unable to read file")
+});

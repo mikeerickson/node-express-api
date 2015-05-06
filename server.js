@@ -50,13 +50,14 @@ var models = require('./app/models');
 // CONFIGURE ROUTE MIDDLEWARE
 // =============================================================================
 var Auth   = require('./app/core/apiAuthentication');
+var RateLimiter = require('./app/core/apiRateLimiter');
 var router = express.Router();
 
 // attach global middleware to use for all requests
 router.use(function(req, res, next) {
+  res.removeHeader("X-Powered-By");
   Auth.isAuthenticated(req, res, next);
-  Auth.checkRateLimit(req, res, next);
-
+  RateLimiter.checkRateLimit(req, res, next);
   // if you dont properly handle next in your middleware, things will come
   // to a screeching halt.
   // next();

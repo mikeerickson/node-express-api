@@ -16,7 +16,7 @@ var UserSchema    = new Schema({
 // =============================================================================
 
 UserSchema.statics.findByApiKey = function findByApiKey (apikey, cb) {
-  return this.where('apikey', apikey).exec(cb);
+	return this.where('apikey', apikey).exec(cb);
 };
 
 module.exports = mongoose.model('User', UserSchema);

@@ -34,20 +34,18 @@ describe('api testing', function() {
       .send()
       .end(function (response) {
         expect(response.body.status).to.be.equal('OK');
-        // expect(response.body.status).toBe('OK');
-        // expect(response.body.message).toBe('Welcome to MLB Player Stats 2014 API');
         expect(response.body.message).to.be.equal('Welcome to MLB Player Stats 2014 API');
         done();
       });
   });
 
-  it("GET should respond with authentication error message", function(done) {
+  it("POST should respond with authentication error message", function(done) {
 
     this.options.url = this.options.url + '/batters';
-    http.get(this.options.url)
+    http.post(this.options.url)
       .header('Accept', 'application/json')
       .header('apikey', '')
-      .send()
+      .send(getSeedData())
       .end(function (response) {
         expect(response.body.status).to.be.equal('fail');
         expect(response.body.message).to.be.equal('Unauthorized -- Invalid ApiKey');
@@ -156,7 +154,6 @@ describe('api testing', function() {
         done();
       });
   });
-
 
 });
 

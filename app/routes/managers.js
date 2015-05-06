@@ -18,7 +18,7 @@ router.route('/')
     manager.save(function(err, manager) {
       if (err) {res.send(err); }
 
-      res.json({ status: 'OK', id: manager._id, message: 'Manager created' });
+      res.status(200).json({ status: 'OK', id: manager._id, message: 'Manager created' });
     });
   })
 
@@ -27,7 +27,7 @@ router.route('/')
     Manager.find(req.query,function(err, managers) {
       if (err) {res.status(404).send(err); }
 
-      res.json(managers);
+      res.status(200).json(managers);
     });
   });
 

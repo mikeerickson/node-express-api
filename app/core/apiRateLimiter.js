@@ -5,12 +5,11 @@ var User   = require('../models/user');
 var chalk  = require('chalk');
 var msg    = require('../../tasks/console');
 
-msg.init('rate-limit');
-
 module.exports = {
 
-  checkLimiting: function(req, res, next) {
-
+  checkRateLimit: function(req, res, next) {
+    msg.success('* * * checking rate limit... * * * ');
+    next();
   },
 
   getRemaining: function() {
