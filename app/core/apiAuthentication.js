@@ -1,18 +1,20 @@
 'use strict';
 
-var config = require('../../config');
-var User   = require('../models/user');
-var chalk  = require('chalk');
-var msg    = require('../../tasks/console');
+var config   = require('../../config');
+var defaults = require('defaults');
+var User     = require('../models/user');
+var msg      = require('../../tasks/console');
 
-module.exports = {
+function ApiAuthentication(options) {
 
-  // HANDLE AUTHENTICATION
-  // =============================================================================
+  options = defaults(options, {
+      override: false
+  });
 
-  isAuthenticated: function(req, res, next) {
+  return function authenticate(req, res, next) {
 
-    // TODO: Refactor so it only fires on PUT, POST and DELETE
+    var checkApiKey = options.override;
+
     if(config.dev.checkApiKey) {
       // TODO: Need to figure out how to check multiple header when multiple are set
       var apikey = req.headers.apikey || req.query.apikey || req.body.apikey;
@@ -35,11 +37,7 @@ module.exports = {
         }
       }
     }
-  },
-
-  validateCredentials: function(username, password) {
-    return true;
   }
+}
 
-};
-
+module.exports = ApiAuthentication;

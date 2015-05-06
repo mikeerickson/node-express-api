@@ -8,18 +8,24 @@
 
 'use strict';
 
-var config     = require('./config'); // load config object first so we can use immediately
-var connection = require('./connection');
-var express    = require('express');
-var bodyParser = require('body-parser');
-var morgan     = require('morgan');
-var chalk      = require('chalk');
-var msg        = require('./tasks/console');
+var config      = require('./config'); // load config object first so we can use immediately
+var connection  = require('./connection');
+
+var express     = require('express');
+var bodyParser  = require('body-parser');
+var morgan      = require('morgan');
+var msg         = require('./tasks/console');
 
 var app        = express();
 var appName    = config.defaults.appName;
 
+// loading API Authentication and Rate Limiting Middleware
+var ApiAuthentication = require('./app/core/apiAuthentication');
+var ApiRateLimiter    = require('./app/core/apiRateLimiter');
+
 msg.init();
+msg.info('\n==========================================================================\n');
+
 
 // SETUP APPLICATION
 // =============================================================================
@@ -27,17 +33,13 @@ msg.init();
 // log any request URI to the console, only when in `dev` mode (default: dev)
 app.use(morgan('dev'));
 
-// configure body parser
+// configure application middelware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 
 // SETUP MONGOOSE (ODM)
 // =============================================================================
 var mongoose   = require('mongoose');
-
-console.log(chalk.green('\n================================================================\n'));
-
 mongoose.connect(connection.database.url); // connect to our database
 msg.success('Connected to ' + connection.database.url);
 
@@ -49,15 +51,17 @@ var models = require('./app/models');
 
 // CONFIGURE ROUTE MIDDLEWARE
 // =============================================================================
-var Auth   = require('./app/core/apiAuthentication');
-var RateLimiter = require('./app/core/apiRateLimiter');
+var apiCheck     = ApiAuthentication();
+var apiRateLimit = ApiRateLimiter();
+
 var router = express.Router();
 
 // attach global middleware to use for all requests
 router.use(function(req, res, next) {
   res.removeHeader("X-Powered-By");
-  Auth.isAuthenticated(req, res, next);
-  RateLimiter.checkRateLimit(req, res, next);
+  apiCheck(req, res, next);
+  apiRateLimit(req, res, next);
+
   // if you dont properly handle next in your middleware, things will come
   // to a screeching halt.
   // next();
@@ -83,6 +87,6 @@ app.use('/api/v1', routes);
 
 // START THE SERVER
 // =============================================================================
-var port = connection.http.port; // set our port from connection
+var port = connection.http.port; // set our port from connection config
 app.listen(port);
-msg.info(appName +' API Server running on port ' + port);
+msg.info(appName +' API Server with Rate Limiting running on port ' + port);

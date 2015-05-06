@@ -1,27 +1,34 @@
 'use strict';
 
-var config = require('../../config');
-var User   = require('../models/user');
-var chalk  = require('chalk');
-var msg    = require('../../tasks/console');
+var defaults = require('defaults');
+var msg      = require('../../tasks/console');
 
-module.exports = {
+function RateLimit(options) {
 
-  checkRateLimit: function(req, res, next) {
-    msg.success('* * * checking rate limit... * * * ');
-    next();
-  },
+    var hits = {};
 
-  getRemaining: function() {
+    // window, delay, and max apply per-ip
+    options = defaults(options, {
+        bufferDelay: 60 * 1000, // miliseconds - how to to wait before rate limit buffer is cleared
+        max: 100                // number of visits before sending 429
+    });
 
-  },
+    return function rateLimit(req, res, next) {
+        var ip = req.ip;
+        (typeof hits[ip] !== "number") ? hits[ip] = 0 : hits[ip]++;
 
-  resetCount: function() {
+        // reset counter for current IP address after delay has elapsed
+        setTimeout(function() {
+            hits[ip] = 0;
+        }, options.bufferDelay);
 
-  },
-  getNumRequests: function() {
-    return 1111;
-  },
+        if (hits[ip] >= options.max) {
+            msg.error('Rate Limit Exceeed: ' + ip);
+            return res.status(429).json({'status': 'Fail', message: 'Rate Limit Exceeded'});
+        }
+        // carry on with out bad self
+        next();
+    };
+}
 
-};
-
+module.exports = RateLimit;
