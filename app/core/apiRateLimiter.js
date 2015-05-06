@@ -10,7 +10,7 @@ function RateLimit(options) {
     // window, delay, and max apply per-ip
     options = defaults(options, {
         bufferDelay: 60 * 1000, // miliseconds - how to to wait before rate limit buffer is cleared
-        max: 100                // number of visits before sending 429
+        maxHits: 25             // number of visits before sending 429
     });
 
     return function rateLimit(req, res, next) {
@@ -22,7 +22,7 @@ function RateLimit(options) {
             hits[ip] = 0;
         }, options.bufferDelay);
 
-        if (hits[ip] >= options.max) {
+        if (hits[ip] >= options.maxHits) {
             msg.error('Rate Limit Exceeed: ' + ip);
             return res.status(429).json({'status': 'Fail', message: 'Rate Limit Exceeded'});
         }

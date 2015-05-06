@@ -1,19 +1,31 @@
 'use strict';
 
+// LOAD SERVER MODULES
+// =============================================================================
+
 var config   = require('../../config');
 var defaults = require('defaults');
-var User     = require('../models/user');
 var msg      = require('../../tasks/console');
+
+
+// LOAD MODELS
+// only need User Module to perform authentication API check
+// =============================================================================
+var User     = require('../models/user');
+
 
 function ApiAuthentication(options) {
 
   options = defaults(options, {
-      override: false
+      override: false // reserved for when we allow forced override (no api check)
   });
 
   return function authenticate(req, res, next) {
 
-    var checkApiKey = options.override;
+    // this will only be used in debug mode, typically this is false
+    if ( options.override ) {
+      return true;
+    }
 
     if(config.dev.checkApiKey) {
       // TODO: Need to figure out how to check multiple header when multiple are set
@@ -37,6 +49,7 @@ function ApiAuthentication(options) {
         }
       }
     }
+
   }
 }
 
