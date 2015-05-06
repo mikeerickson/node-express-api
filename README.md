@@ -1,7 +1,16 @@
 # Building a RESTful API with Node, MongoDB and Express
+### Including ApiAuthentication, ApiRateLimit, Mocha Test
 
 Sample Node Express API application, using Express 4.0 Router and simple API router.
-Example application will allow you to work with a single endpoint `batters` which contains all batting data for MLB 2014!
+
+## Example Application Endpoints
+
+Example application will allow you to work with a variety of endpoints including:
+
+- `batters` which contains all batting data
+- `pitchers` which contains all pitching data
+- `teams` which contains all teams data
+- `managers` which contains all manager data
 
 ## Requirements
 
@@ -24,7 +33,7 @@ Complete the following tasks if getting started (you can skip step 3 if you want
 4. Start MongoDB server daemon
 	- <pre>$ mongod</pre>
 5. Start the server
-	- <pre>$ npm start</pre>*
+	- <pre>$ npm start</pre>
 
 ## Mongo Shell
 If you want to work with the `players` database using Mongo Shell, use separate tab
@@ -35,6 +44,11 @@ If you want to work with the `players` database using Mongo Shell, use separate 
 Test your API using [Postman](https://chrome.google.com/webstore/detail/postman-rest-client-packa/fhbjgbiflinjbdggehcddcbncdddomop)
 
 ## Change History
+
+2014.05.06 - 0.6.0
+- Added Rate Limit Checking
+- Added tests for all features
+- Refactored ApiAuthentication module
 
 2014.04.12 - 0.5.1
 - Cleaned all the code to remove tabs (where applicable) replacing with spaces (indent level of 2).
