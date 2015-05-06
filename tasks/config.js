@@ -19,6 +19,10 @@ module.exports = {
 
 	test: {
 		src: ['./spec/**/*Spec.js', './server.js', 'app/**/*.js']
+	},
+
+	todo: {
+		src: ['./spec/**/*Spec.js', './server.js', 'app/**/*.js']
 	}
 
 };

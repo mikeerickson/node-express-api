@@ -9,7 +9,7 @@ var msg      = require('./console');
 
 gulp.task('todo', function() {
   msg.info('./TODO.MD file updated...');
-  return gulp.src(config.scripts.src)
+  return gulp.src(config.todo.src)
     .pipe(todo())
     .pipe(gulp.dest('./'));
 });

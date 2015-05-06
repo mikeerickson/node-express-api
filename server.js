@@ -24,7 +24,7 @@ var ApiAuthentication = require('./app/core/apiAuthentication');
 var ApiRateLimiter    = require('./app/core/apiRateLimiter');
 
 msg.init();
-msg.info('\n==========================================================================\n');
+msg.info('=' * 50);
 
 
 // SETUP APPLICATION
