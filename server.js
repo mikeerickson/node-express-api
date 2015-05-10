@@ -1,17 +1,15 @@
-// SERVER
-// =============================================================================
-// main entrypoint into API
-
 // LOAD SERVER MODULES
 // =============================================================================
 // load all modules used in application
 
 'use strict';
 
-var config      = require('./config'); // load config object first so we can use immediately
+// load config object first so we can use immediately
+var config      = require('./config');
 var connection  = require('./connection');
 
 var express     = require('express');
+var session     = require('express-session');
 var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
 var msg         = require('./tasks/console');
@@ -19,12 +17,13 @@ var msg         = require('./tasks/console');
 var app        = express();
 var appName    = config.defaults.appName;
 
+
 // loading API Authentication and Rate Limiting Middleware
 var ApiAuthentication = require('./app/core/apiAuthentication');
 var ApiRateLimiter    = require('./app/core/apiRateLimiter');
 
 msg.init();
-msg.info('=' * 50);
+msg.info('==========================================================================');
 
 
 // SETUP APPLICATION
@@ -36,6 +35,14 @@ app.use(morgan('dev'));
 // configure application middelware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(session({secret: 'S3CR37', resave: false, saveUninitialized: true}));
+
+
+app.use(function(res, req, next) {
+	console.log('Time:', Date.now());
+	// console.log(res, req);
+	next();
+});
 
 // SETUP MONGOOSE (ODM)
 // =============================================================================
@@ -73,7 +80,8 @@ app.use('/', router);
 
 // CONFIGURE NON-API ROUTES
 // =============================================================================
-
+// this will serve up and resource located in public directory
+app.use(express.static('public'));
 
 // CONFIGURE API ROUTES
 // =============================================================================

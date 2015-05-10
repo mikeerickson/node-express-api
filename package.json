@@ -1,7 +1,7 @@
 {
   "name": "node-api",
   "main": "server.js",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/mikeerickson/node-express-api"
@@ -20,7 +20,7 @@
     "chalk": "^1.0.0",
     "defaults": "^1.0.2",
     "express": "~4.0.0",
-    "express-rate-limit": "^1.0.2",
+    "express-session": "^1.11.1",
     "gulp": "^3.8.11",
     "gulp-clean": "^0.3.1",
     "gulp-exec": "^2.1.1",
@@ -28,7 +28,6 @@
     "gulp-logger": "0.0.2",
     "gulp-mocha": "^2.0.1",
     "gulp-nodemon": "^2.0.2",
-    "gulp-rimraf": "^0.1.1",
     "gulp-todo": "^2.6.0",
     "jshint-stylish": "^1.0.1",
     "lodash": "^3.5.0",
@@ -40,7 +39,6 @@
     "morgan": "~1.0.0",
     "require-dir": "^0.3.0",
     "should": "^6.0.1",
-    "superagent": "^1.1.0",
     "unirest": "^0.4.0",
     "winston": "^1.0.0"
   },

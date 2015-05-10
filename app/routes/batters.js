@@ -1,11 +1,11 @@
 'use strict';
 
+var config  = require('../../config');
 var express = require('express');
 var Batter  = require('../models/batter');
 var msg     = require('../../tasks/console');
 var router  = express.Router();
 var _       = require('lodash');
-var chalk   = require('chalk');
 
 // CONFIGURE BATTERS API ROUTES
 // =============================================================================
@@ -30,8 +30,11 @@ router.route('/')
 
   // get all the batters (accessed at GET http://localhost:3000/api/v1/batters)
   .get(function(req, res) {
+
+    // get user defined limit, if not found, use recLimit in config
+    var limit = req.query.limit || config.defaults.recLimit;
+
     // remove apikey from queryString
-    var limit = req.query.limit;
     var q = _.remove(req.query, function(key) {
       return key !== 'apikey';
     });
