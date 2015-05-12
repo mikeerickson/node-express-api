@@ -1,8 +1,6 @@
 var msg    = require('../tasks/console');
 var expect = require('chai').expect;
 
-msg.init('console');
-
 describe("Console Module", function() {
 
   it("should test all the messsage routines", function() {

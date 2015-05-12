@@ -13,8 +13,7 @@ var msg      = require('../../tasks/console');
 // =============================================================================
 var User     = require('../models/user');
 
-
-function ApiAuthentication(options) {
+function ApiAuthenticate(options) {
 
   options = defaults(options, {
       override: false // reserved for when we allow forced override (no api check)
@@ -53,4 +52,4 @@ function ApiAuthentication(options) {
   }
 }
 
-module.exports = ApiAuthentication;
+module.exports = ApiAuthenticate;

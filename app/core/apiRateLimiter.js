@@ -10,10 +10,11 @@ function RateLimit(options) {
     // window, delay, and max apply per-ip
     options = defaults(options, {
         bufferDelay: 60 * 1000, // miliseconds - how to to wait before rate limit buffer is cleared
-        maxHits: 25             // number of visits before sending 429
+        maxHits: 100            // number of visits before sending 429
     });
 
     return function rateLimit(req, res, next) {
+
         var ip = req.ip;
         (typeof hits[ip] !== "number") ? hits[ip] = 0 : hits[ip]++;
 

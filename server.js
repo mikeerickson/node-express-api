@@ -19,10 +19,9 @@ var appName    = config.defaults.appName;
 
 
 // loading API Authentication and Rate Limiting Middleware
-var ApiAuthentication = require('./app/core/apiAuthentication');
+var ApiAuthenticate   = require('./app/core/apiAuthenticate');
 var ApiRateLimiter    = require('./app/core/apiRateLimiter');
 
-msg.init();
 msg.info('==========================================================================');
 
 
@@ -39,7 +38,6 @@ app.use(session({secret: 'S3CR37', resave: false, saveUninitialized: true}));
 
 
 app.use(function(res, req, next) {
-	console.log('Time:', Date.now());
 	// console.log(res, req);
 	next();
 });
@@ -58,7 +56,7 @@ var models = require('./app/models');
 
 // CONFIGURE ROUTE MIDDLEWARE
 // =============================================================================
-var apiCheck     = ApiAuthentication();
+var apiCheck     = ApiAuthenticate();
 var apiRateLimit = ApiRateLimiter();
 
 var router = express.Router();
