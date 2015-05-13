@@ -1,9 +1,8 @@
 
 var connection = require('../../connection');
-var msg        = require('../../tasks/console');
 var chalk      = require('chalk');
 
-// SETUP MONGOOSE (ODM)
+// SETUP MONGOOSE (ORM)
 // =============================================================================
 var mongoose   = require('mongoose');
 

@@ -5,7 +5,6 @@
 
 var config   = require('../../config');
 var defaults = require('defaults');
-var msg      = require('../../tasks/console');
 
 
 // LOAD MODELS
@@ -49,7 +48,7 @@ function ApiAuthenticate(options) {
       }
     }
 
-  }
+  };
 }
 
 module.exports = ApiAuthenticate;

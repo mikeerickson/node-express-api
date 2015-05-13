@@ -12,7 +12,7 @@ var express     = require('express');
 var session     = require('express-session');
 var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
-var msg         = require('./tasks/console');
+var msg         = require('gulp-msg');
 
 var app        = express();
 var appName    = config.defaults.appName;
@@ -22,7 +22,7 @@ var appName    = config.defaults.appName;
 var ApiAuthenticate   = require('./app/core/apiAuthenticate');
 var ApiRateLimiter    = require('./app/core/apiRateLimiter');
 
-msg.info('==========================================================================');
+msg.Info('==',appName,'==');
 
 
 // SETUP APPLICATION
@@ -46,7 +46,7 @@ app.use(function(res, req, next) {
 // =============================================================================
 var mongoose   = require('mongoose');
 mongoose.connect(connection.database.url); // connect to our database
-msg.success('Connected to ' + connection.database.url);
+msg.Success('Connected to ' + connection.database.url);
 
 
 // LOAD MODELS
@@ -56,8 +56,8 @@ var models = require('./app/models');
 
 // CONFIGURE ROUTE MIDDLEWARE
 // =============================================================================
-var apiCheck     = ApiAuthenticate();
-var apiRateLimit = ApiRateLimiter();
+var apiCheck     = new ApiAuthenticate();
+var apiRateLimit = new ApiRateLimiter();
 
 var router = express.Router();
 
@@ -95,4 +95,4 @@ app.use('/api/v1', routes);
 // =============================================================================
 var port = connection.http.port; // set our port from connection config
 app.listen(port);
-msg.info(appName +' API Server with Rate Limiting running on port ' + port);
+msg.Info(appName +' API Server with Rate Limiting running on port ' + port);

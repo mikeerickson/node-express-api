@@ -1,7 +1,7 @@
 'use strict';
 
 var defaults = require('defaults');
-var msg      = require('../../tasks/console');
+var msg      = require('gulp-msg');
 
 function RateLimit(options) {
 
@@ -16,7 +16,11 @@ function RateLimit(options) {
     return function rateLimit(req, res, next) {
 
         var ip = req.ip;
-        (typeof hits[ip] !== "number") ? hits[ip] = 0 : hits[ip]++;
+        if (typeof hits[ip] !== "number") {
+          hits[ip] = 0;
+        } else {
+          hits[ip]++;
+        }
 
         // reset counter for current IP address after delay has elapsed
         setTimeout(function() {
@@ -24,7 +28,7 @@ function RateLimit(options) {
         }, options.bufferDelay);
 
         if (hits[ip] >= options.maxHits) {
-            msg.error('Rate Limit Exceeed: ' + ip);
+            msg.Error('Rate Limit Exceeed: ' + ip);
             return res.status(429).json({'status': 'Fail', message: 'Rate Limit Exceeded'});
         }
         // carry on with out bad self

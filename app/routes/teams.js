@@ -4,7 +4,7 @@ var express = require('express');
 var Team    = require('../models/team');
 var router  = express.Router();
 
-// CONFIGURE BATTERS API ROUTES
+// CONFIGURE TEAMS API ROUTES
 // =============================================================================
 
 // Configure all `teams`

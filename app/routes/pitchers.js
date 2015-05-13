@@ -4,7 +4,7 @@ var express = require('express');
 var Pitcher = require('../models/pitcher');
 var router  = express.Router();
 
-// CONFIGURE BATTERS API ROUTES
+// CONFIGURE PITCHERS API ROUTES
 // =============================================================================
 
 // Configure all `pitchers`

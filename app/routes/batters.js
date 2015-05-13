@@ -3,7 +3,6 @@
 var config  = require('../../config');
 var express = require('express');
 var Batter  = require('../models/batter');
-var msg     = require('../../tasks/console');
 var router  = express.Router();
 var _       = require('lodash');
 

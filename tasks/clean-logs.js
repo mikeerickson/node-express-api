@@ -5,11 +5,11 @@ var taskName = 'clean-logs';
 var gulp    = require('gulp');
 var config  = require('./config');
 var chalk   = require('chalk');
-var logger  = require('gulp-logger');
 var clean   = require('gulp-clean');
+var msg     = require('gulp-msg');
 
 gulp.task('clean-logs', function () {
   return gulp.src(config.logs.dir, {read: false})
-	.pipe(logger({ after: chalk.green('Clearing Logs...')}))
-      .pipe(clean());
+    .pipe(clean())
+    .pipe(msg.flush.success('Logs Cleared Successfully...'));
 });

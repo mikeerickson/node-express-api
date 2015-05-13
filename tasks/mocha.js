@@ -5,10 +5,10 @@ var taskName  = 'mocha';
 var gulp     = require('gulp');
 var mocha    = require('gulp-mocha');
 var mkdirp   = require('mkdirp');
-var msg      = require('console');
+var msg      = require('gulp-msg');
 
 mkdirp('spec/logs', function (err) {
-  if (err) { msg.error(err); }
+  if (err) { msg.Error(err); }
 });
 
 gulp.task('test:mocha', function () {

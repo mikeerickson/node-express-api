@@ -4,7 +4,7 @@ var express = require('express');
 var Manager = require('../models/manager');
 var router  = express.Router();
 
-// CONFIGURE BATTERS API ROUTES
+// CONFIGURE MANAGERS API ROUTES
 // =============================================================================
 
 // Configure all `managers`

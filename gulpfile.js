@@ -4,12 +4,12 @@ var gulp       = require('gulp');
 var nodemon    = require('gulp-nodemon');
 var requireDir = require('require-dir');
 var config     = require('./tasks/config');
-var msg        = require('./tasks/console');
+var msg        = require('gulp-msg');
 
 
 // LOAD ALL TASKS
 // you can execute task like `gulp <taskName>`
-requireDir('./tasks', { recurse: true });
+requireDir('./tasks', { recurse: false });
 
 // TASKS
 

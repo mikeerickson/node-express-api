@@ -3,7 +3,7 @@ var expect = require('chai').expect;
 
 describe("Console Module", function() {
 
-  it("should test all the messsage routines", function() {
+  it("should test all message routines", function() {
     msg.log('log');
     msg.info('info');
     msg.error('error');

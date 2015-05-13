@@ -2,7 +2,7 @@
 
 var config  = require('../config');
 var http    = require('unirest');
-var msg     = require('../tasks/console');
+var msg     = require('gulp-msg');
 
 var should  = require('should');
 var chai    = require('chai');

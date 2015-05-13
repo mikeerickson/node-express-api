@@ -4,12 +4,12 @@ var taskName = 'Todo';
 var gulp     = require('gulp');
 var config   = require('./config');
 var todo     = require('gulp-todo');
-var msg      = require('./console');
+var msg      = require('gulp-msg');
 
 
 gulp.task('todo', function() {
-  msg.info('./TODO.MD file updated...');
   return gulp.src(config.todo.src)
     .pipe(todo())
-    .pipe(gulp.dest('./'));
+    .pipe(gulp.dest('./'))
+    .pipe(msg.flush.success('./TODO.MD file updated...'));
 });
