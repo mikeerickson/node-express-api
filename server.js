@@ -12,8 +12,7 @@ var express     = require('express');
 var session     = require('express-session');
 var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
-var msg         = require('gulp-msg');
-
+var msg         = require('gulp-messenger');
 var app        = express();
 var appName    = config.defaults.appName;
 
@@ -22,8 +21,7 @@ var appName    = config.defaults.appName;
 var ApiAuthenticate   = require('./app/core/apiAuthenticate');
 var ApiRateLimiter    = require('./app/core/apiRateLimiter');
 
-msg.Info('==',appName,'==');
-
+msg.Info('=',appName,'=');
 
 // SETUP APPLICATION
 // =============================================================================

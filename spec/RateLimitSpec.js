@@ -2,7 +2,7 @@
 
 var config  = require('../config');
 var http    = require('unirest');
-var msg     = require('gulp-msg');
+var msg     = require('gulp-messenger');
 
 var should  = require('should');
 var chai    = require('chai');

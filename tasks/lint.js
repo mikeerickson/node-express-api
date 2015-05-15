@@ -8,7 +8,7 @@ var jshintStyle = require('jshint-stylish');
 var config      = require('./config');
 var logger      = require('gulp-logger');
 var chalk       = require('chalk');
-var msg         = require('gulp-msg');
+var msg         = require('gulp-messenger');
 
 gulp.task('lint', function() {
   return gulp.src(config.lint.src)

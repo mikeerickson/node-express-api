@@ -7,7 +7,7 @@ var should   = require('should');
 var assert   = require('chai').assert;
 var expect   = require('chai').expect;
 
-var msg      = require('gulp-msg');
+var msg      = require('gulp-messenger');
 var clearDB  = require('mocha-mongoose')(dbURI);
 var chalk    = require('chalk');
 
@@ -60,7 +60,6 @@ describe('batter: testing', function(done) {
         if (err) { msg.error(err); return done(err); }
           var q = Batter.find({last_name: 'erickson'}).limit(1);
           q.exec(function(err, batters) {
-            console.log(batters);
             if (err) { msg.error(err); return done(err); }
             expect(batters.length).to.be.equal(1);
             assert(batters);

@@ -5,7 +5,7 @@ var taskName  = 'mocha';
 var gulp     = require('gulp');
 var mocha    = require('gulp-mocha');
 var mkdirp   = require('mkdirp');
-var msg      = require('gulp-msg');
+var msg      = require('gulp-messenger');
 
 mkdirp('spec/logs', function (err) {
   if (err) { msg.Error(err); }

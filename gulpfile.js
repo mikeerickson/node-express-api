@@ -4,13 +4,13 @@ var gulp       = require('gulp');
 var nodemon    = require('gulp-nodemon');
 var requireDir = require('require-dir');
 var config     = require('./tasks/config');
-var msg        = require('gulp-msg');
 
 
 // LOAD ALL TASKS
 // =============================================================================
 // you can execute task like `gulp <taskName>`
 requireDir('./tasks', { recurse: false });
+
 
 // DEFINE TASKS
 // =============================================================================
@@ -27,6 +27,7 @@ gulp.task('serve', function () {
 
 // for the brain that is used to typing npm start
 gulp.task('start',['serve']);
+
 
 // WATCHERS
 // =============================================================================

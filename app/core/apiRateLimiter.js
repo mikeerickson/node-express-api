@@ -1,7 +1,7 @@
 'use strict';
 
 var defaults = require('defaults');
-var msg      = require('gulp-msg');
+var msg      = require('gulp-messenger');
 
 function RateLimit(options) {
 
