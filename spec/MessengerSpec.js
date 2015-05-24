@@ -2,7 +2,7 @@
 var msg    = require('gulp-messenger');
 var expect = require('chai').expect;
 
-describe("Console Module", function() {
+describe("gulp-messenger module", function() {
 
   it("should test all message routines", function(done) {
     // msg.Log('log');

@@ -26,12 +26,14 @@
     "gulp-exec": "^2.1.1",
     "gulp-jshint": "^1.9.4",
     "gulp-logger": "0.0.2",
-    "gulp-messenger": "0.0.5",
+    "gulp-messenger": "0.0.8",
     "gulp-mocha": "^2.0.1",
     "gulp-nodemon": "^2.0.2",
+    "gulp-run": "^1.6.8",
     "gulp-todo": "^2.6.0",
     "jshint-stylish": "^1.0.1",
     "lodash": "^3.5.0",
+    "minimist": "^1.1.1",
     "mkdirp": "^0.5.1",
     "mocha": "^2.2.4",
     "mocha-mongoose": "^1.0.4",
@@ -45,6 +47,7 @@
   },
   "devDependencies": {
     "gulp-jasmine": "^2.0.1",
-    "jasmine-reporters": "^2.0.5"
+    "jasmine-reporters": "^2.0.5",
+    "mochawesome": "^1.2.0"
   }
 }

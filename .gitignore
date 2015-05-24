@@ -3,3 +3,5 @@
 /.settings
 /logs
 promises.txt
+/mochawesome-reports
+tasks/dev.js
