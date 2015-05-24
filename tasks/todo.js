@@ -1,10 +1,12 @@
 "use strict";
+
 var taskName = 'Todo';
 
 var gulp     = require('gulp');
 var config   = require('./config');
 var todo     = require('gulp-todo');
 var msg      = require('gulp-messenger');
+
 
 gulp.task('todo', function() {
   return gulp.src(config.todo.src)

@@ -4,7 +4,6 @@ var taskName = 'clean-logs';
 
 var gulp    = require('gulp');
 var config  = require('./config');
-var chalk   = require('chalk');
 var clean   = require('gulp-clean');
 var msg     = require('gulp-messenger');
 

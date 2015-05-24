@@ -10,7 +10,9 @@ var run      = require('gulp-run');
 
 var args     = process.argv.slice(3);
 
-var launch  = args.indexOf('--launch') >= 0;
+// launch the report after tests have completed
+// pass --launch as 'gulp test:report --launch'
+var launchReport = args.indexOf('--launch') >= 0;
 
 mkdirp('spec/logs', function (err) {
   if (err) { msg.Error(err); }
@@ -34,9 +36,7 @@ gulp.task('test:report', function () {
       process.exit(1);
     })
     .once('end', function () {
-      // so we will check --launch flag read from command line
-      // if ( params.indexOf('launch') >= 0 )
-      if ( launch ) {
+      if ( launchReport ) {
       	run('open mochawesome-reports/mochawesome.html').exec();
       }
       process.exit();
