@@ -26,7 +26,7 @@
     "gulp-exec": "^2.1.1",
     "gulp-jshint": "^1.9.4",
     "gulp-logger": "0.0.2",
-    "gulp-messenger": "0.0.28",
+    "gulp-messenger": "0.0.32",
     "gulp-mocha": "^2.0.1",
     "gulp-nodemon": "^2.0.2",
     "gulp-run": "^1.6.8",

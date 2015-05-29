@@ -9,6 +9,8 @@ var chai    = require('chai');
 var assert  = require('chai').assert;
 var expect  = require('chai').expect;
 
+msg.Warn('=','   now is the time for all good me to come to the aid of their cuntry!','=');
+
 describe('api testing', function() {
 
   // this section will be executed BEFORE each test
