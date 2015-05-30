@@ -41,6 +41,7 @@
     "mongodb": "^1.4.35",
     "mongoose": "~3.8.0",
     "morgan": "~1.0.0",
+    "path-exists": "^1.0.0",
     "require-dir": "^0.3.0",
     "should": "^6.0.1",
     "unirest": "^0.4.0",

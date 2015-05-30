@@ -18,11 +18,18 @@ module.exports = {
 	},
 
 	test: {
-		src: ['./spec/**/*Spec.js', './server.js', 'app/**/*.js']
+		src: ['spec/**/*Spec.js', './server.js', 'app/**/*.js'],
+    spec: ['spec/**/*.Spec.js'],
+    reporter: {
+      openReport: true
+    }
 	},
 
 	todo: {
-		src: ['./spec/**/*Spec.js', './server.js', 'app/**/*.js']
+		src: ['spec/**/*Spec.js', './server.js', 'app/**/*.js'],
+    reporter: {
+      openReport: true
+    }
 	}
 
 };

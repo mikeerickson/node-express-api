@@ -1,44 +1,50 @@
+/*global require*/
+/*global process*/
+
 'use strict';
 
-var taskName  = 'mocha';
+var taskName = 'mocha';
 
-var gulp     = require('gulp');
-var mocha    = require('gulp-mocha');
-var mkdirp   = require('mkdirp');
-var msg      = require('gulp-messenger');
-var run      = require('gulp-run');
+var gulp   = require('gulp');
+var config = require('./config');
+var mocha  = require('gulp-mocha');
+var mkdirp = require('mkdirp');
+var run    = require('gulp-run');
+var exists = require('path-exists');
+var msg    = require('gulp-messenger');
 
-var args     = process.argv.slice(3);
+var args = process.argv.slice(3);
 
-// launch the report after tests have completed
-// pass --launch as 'gulp test:report --launch'
-var launchReport = args.indexOf('--launch') >= 0;
+
+// open the report after tests have completed
+// pass --open as 'gulp test:report --open'
+var openReport = args.indexOf('--open') >= 0 || (config.test.reporter.openReport);
 
 mkdirp('spec/logs', function (err) {
-  if (err) { msg.Error(err); }
+  if (err) {msg.Error(err);}
 });
+
 
 gulp.task('test:mocha', function () {
-  return gulp.src('spec/**/*Spec.js', {read: false})
-    .pipe(mocha({reporter: 'progress'}))
-    .once('error', function () {
-      process.exit(1);
-    })
-    .once('end', function () {
-      process.exit();
-    });
+  return gulp.src(config.test.spec, {read: false})
+    .pipe(mocha());
 });
 
+// create awesome report and optionally open in browser
 gulp.task('test:report', function () {
-  return gulp.src('spec/**/*Spec.js', {read: false})
-    .pipe(mocha({reporter: 'mochawesome'}))
-    .once('error', function () {
-      process.exit(1);
-    })
-    .once('end', function () {
-      if ( launchReport ) {
-      	run('open mochawesome-reports/mochawesome.html').exec();
-      }
-      process.exit();
-    });
+  if (exists.sync('mochawesome-reports')) {
+    return gulp.src('spec/**/*Spec.js', {read: false})
+      .pipe(mocha({reporter: 'mochawesome'}))
+      .once('end', function () {
+        if (openReport) {
+          run('open mochawesome-reports/mochawesome.html').exec();
+        }
+        process.exit();
+      });
+  } else {
+    msg.Error(' *** Mochawesome reporter not installed! *** ');
+    process.exit();
+  }
+
 });
+

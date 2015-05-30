@@ -6,10 +6,9 @@ var msg     = require('gulp-messenger');
 
 var should  = require('should');
 var chai    = require('chai');
-var assert  = require('chai').assert;
-var expect  = require('chai').expect;
+var assert  = chai.assert;
+var expect  = chai.expect;
 
-msg.Warn('=','   now is the time for all good me to come to the aid of their cuntry!','=');
 
 describe('api testing', function() {
 
@@ -57,7 +56,7 @@ describe('api testing', function() {
 
   // NOTE: speedup this test by limiting to first record (that is all we need)
   it("GET should perform standard request", function(done) {
-    this.options.url = this.options.url + '/batters?limit=5';
+    this.options.url = this.options.url + '/batters?limit=1';
     http.get(this.options.url)
       .header('Accept', 'application/json')
       .header('apikey', config.dev.apikey)
@@ -162,8 +161,8 @@ describe('api testing', function() {
 function getSeedData() {
 
   var data = {
-    first_name: 'kira',
-    last_name:  'erickson',
+    first_name: 'Mike',
+    last_name:  'Erickson',
     teamID:     'LAA',
     lgID:       'LA',
     yearID:     '2014'
