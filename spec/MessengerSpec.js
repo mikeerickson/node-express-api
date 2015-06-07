@@ -12,6 +12,7 @@ describe("gulp-messenger module", function() {
     msg.Warning('warning');
     msg.Note('note');
     msg.Time('time');
+    msg.Warning('This is at test with <%=lname %>',{lname: 'Erickson'});
     // msg.Debug('debug');
     // msg.warn('warn');
     expect(true).to.be.equal(true);
