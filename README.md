@@ -45,31 +45,31 @@ Test your API using [Postman](https://chrome.google.com/webstore/detail/postman-
 
 ## Change History
 
-2014.05.06 - 0.6.0
+2015.05.06 - 0.6.0
 - Added Rate Limit Checking
 - Added tests for all features
 - Refactored ApiAuthentication module
 
-2014.04.12 - 0.5.1
+2015.04.12 - 0.5.1
 - Cleaned all the code to remove tabs (where applicable) replacing with spaces (indent level of 2).
 
-2014.04.11 - 0.5.0
+2015.04.11 - 0.5.0
 - Updated jasmine tasks to use Terminal Reporter
 
-2014.04.03 - 0.4.0
+2015.04.03 - 0.4.0
 - Added `teams` endpoint
 
-2014.04.01 - 0.3.0:
+2015.04.01 - 0.3.0:
 - Added `managers` endpoint
 - Added a complete API test suite
 	<pre> $ npm test </pre>
 
-2014.03.31 - 0.2.0:
+2015.03.31 - 0.2.0:
 - Added `pitchers` endpoint
 - Refactored code to place routes in separate `routes` directory
 - Added `apikey` authentication
 
-2014.03.26 - 0.1.0:
+2015.03.26 - 0.1.0:
 - Initial Release (basic API)
 
 ## Contributing
