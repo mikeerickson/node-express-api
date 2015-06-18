@@ -22,7 +22,7 @@ router.route('/')
       if (err) {
         res.status(400).json( {status: 'Fail', 'message': err.message, 'errors': err.errors } );
       } else {
-        res.json({ id: batter._id, status: 'OK', message: 'Batter created' });
+        res.status(200).json({ id: batter._id, status: 'OK', message: 'Batter created' });
       }
     });
   })
