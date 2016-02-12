@@ -3,8 +3,6 @@
 
 'use strict';
 
-var taskName = 'mocha';
-
 var gulp   = require('gulp');
 var config = require('./config');
 var mocha  = require('gulp-mocha');

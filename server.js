@@ -13,8 +13,9 @@ var session     = require('express-session');
 var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
 var msg         = require('gulp-messenger');
+var pkgInfo     = require('./package.json');
 var app         = express();
-var appName     = config.defaults.appName;
+var appName     = pkgInfo.name;
 
 
 // loading API Authentication and Rate Limiting Middleware

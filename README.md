@@ -45,6 +45,9 @@ Test your API using [Postman](https://chrome.google.com/webstore/detail/postman-
 
 ## Change History
 
+2016.02.12 - 0.7.0
+- Updated dependencies
+
 2015.05.06 - 0.6.0
 - Added Rate Limit Checking
 - Added tests for all features
