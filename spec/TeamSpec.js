@@ -92,7 +92,7 @@ describe('team: testing', function(done) {
 
     });
 
-    // delate
+    // delete
     it("should delete a team", function(done) {
 
       Team.remove({last_name: 'Ericson'}, function(err){

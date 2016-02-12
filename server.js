@@ -30,7 +30,7 @@ msg.Info('=',appName,'=');
 // log any request URI to the console, only when in `dev` mode (default: dev)
 app.use(morgan('dev'));
 
-// configure application middelware
+// configure application middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({secret: 'S3CR37', resave: false, saveUninitialized: true}));
@@ -66,9 +66,7 @@ router.use(function(req, res, next) {
   apiCheck(req, res, next);
   apiRateLimit(req, res, next);
 
-  // if you dont properly handle next in your middleware, things will come
-  // to a screeching halt.
-  // next();
+  // take care not to call `next` here as it is passed onto apiRateLimit function
 
 });
 
