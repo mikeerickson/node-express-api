@@ -55,10 +55,10 @@ router.route('/')
 // ----------------------------------------------------
 router.route('/:batter_id')
 
-  // get the better with that id
+  // get the batter with that id
   .get(function(req, res) {
     Batter.findById(req.params.batter_id, function(err, batter) {
-      // reconstruct error response to send same format as api-lumne
+      // reconstruct error response to send same format as api-lumen
       if ((err) || (! batter)) {
         res.status(404).json({status: 'Fail', message: 'Batter Not Found'});
       }

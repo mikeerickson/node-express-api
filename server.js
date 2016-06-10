@@ -87,7 +87,6 @@ var routes = require('./app/routes');
 // and finally attach router to API prefix
 app.use('/api/v1', routes);
 
-
 // START THE SERVER
 // =============================================================================
 var port = connection.http.port; // set our port from connection config

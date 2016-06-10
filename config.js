@@ -6,11 +6,13 @@
 module.exports = {
 
   defaults: {
-    src:         ['/**/*.js'],
-    appName:     'MLB Player Stats',
-    recLimit:    10,
-    connection:  'mongodb://localhost:27017/players',
-    port: 3000
+    src:             ['/**/*.js'],
+    appName:         'MLB Player Stats',
+    rateLimit:       250,
+    rateBufferDelay: 60,
+    recLimit:        10000,
+    connection:      'mongodb://localhost:27017/players',
+    port:            3000
   },
 
   dev: {

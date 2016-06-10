@@ -1,0 +1,20 @@
+body {
+   margin-top: 40px;
+}
+
+.app-container {
+   border: 1px solid lightgrey;
+   height: 500px;
+}
+
+.left-container {
+   border-right: 1px solid lightgrey;
+   height: inherit;
+}
+
+
+.table-container {
+   display: block;
+   height: 450px;
+   overflow-y: scroll;
+}

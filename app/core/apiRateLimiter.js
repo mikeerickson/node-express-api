@@ -2,6 +2,7 @@
 
 var defaults = require('defaults');
 var msg      = require('gulp-messenger');
+var config   = require('../../config');
 
 function RateLimit(options) {
 
@@ -9,8 +10,8 @@ function RateLimit(options) {
 
     // window, delay, and max apply per-ip
     options = defaults(options, {
-        bufferDelay: 60 * 1000, // miliseconds - how to to wait before rate limit buffer is cleared
-        maxHits: 100            // number of visits before sending 429
+        bufferDelay: config.defaults.rateBufferDelay * 1000 || 6000, // milliseconds - how to to wait before rate limit buffer is cleared
+        maxHits:     config.defaults.rateLimit || 100                // number of visits before sending 429
     });
 
     return function rateLimit(req, res, next) {
